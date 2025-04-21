@@ -372,4 +372,8 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Code\Misc\" />
+  </ItemGroup>
+
 </Project>

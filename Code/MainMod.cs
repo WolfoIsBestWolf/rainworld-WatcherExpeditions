@@ -14,7 +14,7 @@ using System;
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.0.0")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.0.1")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
@@ -22,7 +22,16 @@ namespace WatcherExpeditions
         public void OnEnable()
         {
             On.RainWorld.OnModsInit += RainWorld_OnModsInit;
+            On.RainWorld.PostModsInit += RainWorld_PostModsInit;
         }
+
+        private void RainWorld_PostModsInit(On.RainWorld.orig_PostModsInit orig, RainWorld self)
+        {
+            orig(self);
+            WLog.Start();
+            SandboxStuff.Start();
+        }
+
         public void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit orig, RainWorld self)
         {
             orig(self);
@@ -44,17 +53,16 @@ namespace WatcherExpeditions
             AddWatcherToMenu.Start();
             ST_ExpeditionStuff.Start();
 
-            Music.Add();
-            FinishWAUA.Start();
-            RotMissions.Start();
+          
+            JukeboxStuff.Add();
             JollyCoopAdditions.Start();
             PassageFix.Start();
-            WLog.Start();
 
-
-            //Boomerang fucking sucks dude wtf
-            /*CustomPerks.Register(new CustomPerk[] { new Perk_Boomerang()});
-            IL.Room.Loaded += AddBoomerang;*/
+            FinishWAUA.Start();
+            WatcherMissions.Start();
+            NewPerks.Start();
+            FunctionalEgg.Start();
+ 
  
             slugbase = BepInEx.Bootstrap.Chainloader.PluginInfos.ContainsKey("slime-cubed.slugbase");
             Debug.Log("WatcherExpeditions Slugbase installed : " + slugbase);
@@ -63,7 +71,6 @@ namespace WatcherExpeditions
             //On.Watcher.PrinceBehavior.WillingToInspectItem +=
 
             IL.PlayerGraphics.ApplyPalette += FixCustomColorsNotWorking;
- 
         }
 
     

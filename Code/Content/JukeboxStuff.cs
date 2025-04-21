@@ -11,22 +11,24 @@ using RWCustom;
 using Menu.Remix;
 using Menu;
 using UnityEngine.UIElements;
-
+using HarmonyLib;
+ 
 namespace WatcherExpeditions
 {
-    public class Music
+    public class JukeboxStuff
     {
-        public static string WatcherStart;
+        public static string FirstTrack;
         public static string LastTrack;
-
+        public static bool dump = false;
 
         public static void Add()
         {
+            On.Menu.MusicTrackButton.ctor += UnlockSongs;
             On.Expedition.ExpeditionProgression.GetUnlockedSongs += WatcherSongs;
             On.Expedition.ExpeditionProgression.TrackName += WatcherTrackName;
-
+          
         }
-
+ 
         private static string WatcherTrackName(On.Expedition.ExpeditionProgression.orig_TrackName orig, string filename)
         {
             if (filename == "BM_RWTW_BLUEENVOI")
@@ -53,16 +55,13 @@ namespace WatcherExpeditions
             {
                 return "ST ELSE V";
             }
-
-
             return orig(filename);
         }
 
         private static void UnlockSongs(On.Menu.MusicTrackButton.orig_ctor orig, Menu.MusicTrackButton self, Menu.Menu menu, Menu.MenuObject owner, string displayText, string singalText, Vector2 pos, Vector2 size, Menu.SelectOneButton[] buttonArray, int index)
-        {
-            Debug.Log(singalText);
+        {   
             orig(self, menu, owner, displayText, singalText, pos, size, buttonArray, index);
-            if (singalText == WatcherStart)
+            if (singalText == FirstTrack)
             {
                 if (WConfig.cfgWatcherMusic.Value)
                 { 
@@ -81,7 +80,6 @@ namespace WatcherExpeditions
         private static Dictionary<string, string> WatcherSongs(On.Expedition.ExpeditionProgression.orig_GetUnlockedSongs orig)
         {
             var original = orig();
-
             if (ModManager.Watcher && WConfig.cfgWatcherMusic.Value)
             {
                 List<string> list = new List<string>
@@ -168,17 +166,35 @@ namespace WatcherExpeditions
                       "RWTW_ST_ELSE_03",
                       "RWTW_ST_ELSE_04",
                       "RWTW_ST_ELSE_05",
-                };
-              
+                };           
                 int length = original.Count+1;
-                WatcherStart = "mus-" + ValueConverter.ConvertToString<int>(length);
+                FirstTrack = "mus-" + ValueConverter.ConvertToString<int>(original.Count);
                 for (int i = 0; i < list.Count; i++)
                 {
-                    original["mus-" + ValueConverter.ConvertToString<int>(i + length)] = list[i];
+                    original["mus-" + ValueConverter.ConvertToString<int>(i +length)] = list[i];
+                }
+                LastTrack = "mus-" + ValueConverter.ConvertToString<int>(original.Count);
+                if (!dump)
+                {
+                    if (WConfig.cfgDebugInfo.Value)
+                    {
+                        ExpLog.Log(FirstTrack);
+                        ExpLog.Log(LastTrack);
+                        dump = true;
+
+                        /*for (int i = 0; i < original.Count; i++)
+                        {
+                            ExpLog.Log(original.Keys.ElementAt(i));
+                        };*/
+                        string enw = "";
+                        for (int i = 0; i < original.Count+1; i++)
+                        {
+                            original.TryGetValue("mus-" + i, out enw);
+                            ExpLog.Log("mus-" + i + " : " + enw);
+                        }
+                    }                
                 }
             }
-            LastTrack = "mus-" + ValueConverter.ConvertToString<int>(original.Count);
-
             return original;
         }
     }

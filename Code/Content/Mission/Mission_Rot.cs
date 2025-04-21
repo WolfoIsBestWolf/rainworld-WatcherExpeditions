@@ -6,10 +6,11 @@ using MonoMod.Cil;
 using JetBrains.Annotations;
 using RWCustom;
 using UnityEngine;
+using System.IO;
 
 namespace WatcherExpeditions
 {
-    public class RotMissions
+    public class Mission_Rot
     {
         public static bool Added = false;
         public static void Start()
@@ -19,6 +20,7 @@ namespace WatcherExpeditions
             //On.StoryGameSession.ctor += StoryGameSession_ctor;    
 
             On.Expedition.ExpeditionProgression.MissionFromJson += ExpeditionProgression_MissionFromJson;
+
         }
 
         private static void ChallengeSelectPage_StartGame(On.Menu.ChallengeSelectPage.orig_StartGame orig, Menu.ChallengeSelectPage self)
@@ -118,13 +120,14 @@ namespace WatcherExpeditions
                 return;
             }
             //Debug.Log("Rot_World_Mission");
+            //world.game.GetStorySession.saveState.progression.miscProgressionData.beaten_Watcher_SentientRot = true;
             if (!world.game.GetStorySession.saveState.miscWorldSaveData.regionsInfectedBySentientRot.Contains(world.name.ToLowerInvariant()))
             {
                 Debug.Log("Rot_World_Mission : New world " + world.name);
                 world.game.GetStorySession.saveState.miscWorldSaveData.regionsInfectedBySentientRot.Add(world.name.ToLowerInvariant());
                 for (int i = 0; world.abstractRooms.Length > i; i++)
                 {
-                    InfectRegionFaster(world.regionState, 10, world.abstractRooms[i].name);
+                    InfectRegionFaster(world.regionState, 2, world.abstractRooms[i].name);
                 }
             }
             else

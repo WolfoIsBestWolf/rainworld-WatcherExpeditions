@@ -251,8 +251,17 @@ namespace WatcherExpeditions
                     Debug.Log(key+ " : " + entry.creature + " |Spawns: " + entry.spawns + "  |Points: " + entry.points);
                 }
             }
- 
-    }
+
+            Debug.Log("All valid pearls to region");
+            foreach (var region in Custom.rainWorld.regionDataPearls.Keys)
+            {
+                Debug.Log("Region : "+region);
+                foreach (var pearls in Custom.rainWorld.regionDataPearls[region])
+                {
+                    Debug.Log("-"+ pearls);
+                }
+            }
+        }
 
     }
 }

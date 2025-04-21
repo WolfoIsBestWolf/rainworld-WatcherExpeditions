@@ -32,7 +32,7 @@ namespace WatcherExpeditions
        
             On.Expedition.ExpeditionGame.IsUndesirableRoomScript += RemoveWatcherRoomScripts;
 
-            On.Menu.UnlockDialog.TogglePerk += BlockPerks;
+            
             IL.Player.ClassMechanicsArtificer += WatcherExplosiveJumpFix;
 
 
@@ -44,7 +44,7 @@ namespace WatcherExpeditions
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.After,
-                x => x.MatchLdfld("MiscWorldSaveData", "get_highestPrinceConversationSeen")))
+                x => x.MatchCallvirt("MiscWorldSaveData", "get_highestPrinceConversationSeen")))
             {
                 c.EmitDelegate<Func<int, int>>((convos) =>
                 {
@@ -153,22 +153,7 @@ namespace WatcherExpeditions
             }
         }
 
-        private static void BlockPerks(On.Menu.UnlockDialog.orig_TogglePerk orig, UnlockDialog self, string message)
-        {
-            if (ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
-            {
-                //We fixed passages
-
-                if (message == "unl-glow" && ModManager.Watcher)
-                {
-                    self.PlaySound(SoundID.MENU_Error_Ping);
-                    return;
-                }
-            }
-           
-            orig(self, message);
-        }
-
+       
         private static bool RemoveWatcherRoomScripts(On.Expedition.ExpeditionGame.orig_IsUndesirableRoomScript orig, UpdatableAndDeletable item)
         {
             if (item is WatcherRoomSpecificScript.WAUA_TOYS || item is WatcherRoomSpecificScript.WAUA_BATH || item is WatcherRoomSpecificScript.WORA_AI || item is WatcherRoomSpecificScript.WORA_DESERT6 || item is WatcherRoomSpecificScript.WORA_KarmaSigils)
@@ -335,7 +320,7 @@ namespace WatcherExpeditions
                 }
                 if (WConfig.cfgHunt_BigSandWorm.Value)
                 {
-                    dict.Add("BigSandGrub", 12);
+                    dict.Add("BigSandGrub", 11);
                 }
            
                 foreach (KeyValuePair<string, int> keyValuePair in newDict)
@@ -529,7 +514,7 @@ namespace WatcherExpeditions
                     //"WAUA", //Ancient Urban (Final area)
                     "WBLA", //Badlands
                     //"WORA", //Outer Rim
-                    "WPTA", //Signal Spires (Pink Towers Area?)
+                    "WPTA", //Signal Spires
                     "WRFA", //Coral Caves
                     "WRFB", //Turbulent Pump
                     "WRRA", //Rusted Wrecks
@@ -539,11 +524,10 @@ namespace WatcherExpeditions
                     "WSKC", //Stormy Coast
                     "WSKD", //Shrouded Coast
                     //"WSSR", //Unfortunate Evolution
-                    /*"WDSR", //Drainage - Rot
-                    "WGWR", //Garbage - Rot
-                    "WHIR", //Industrial - Rot
-                    "WSUR", //Outskirts - Rot
-                    */
+                    //"WDSR", //Drainage - Rot
+                    //"WGWR", //Garbage - Rot
+                    //"WHIR", //Industrial - Rot
+                    //"WSUR", //Outskirts - Rot
                     "WTDA", //Torrid Desert
                     "WTDB", //Desolate Tract
                     "WVWA", //Verdant Waterways

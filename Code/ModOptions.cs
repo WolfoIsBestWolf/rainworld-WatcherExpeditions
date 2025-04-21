@@ -19,6 +19,11 @@ namespace WatcherExpeditions
          {
               "Fix Custom Color"
          }));
+        public static Configurable<bool> cfgSandbox = instance.config.Bind("cfgSandbox", true,
+                 new ConfigurableInfo("Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement.\nRoz Lizards aren't really possible since they aren't a unique creature.", null, "", new object[]
+                 {
+              "Watcher Sandbox"
+                 }));
 
         public static Configurable<bool> cfgSpinningTopDialogue = instance.config.Bind("cfgSpinningTopDialogue", true,
           new ConfigurableInfo("Allow Spinning Top to speak. It will choose dialogues in order.", null, "", new object[]
@@ -51,9 +56,9 @@ namespace WatcherExpeditions
            }));
 
         public static Configurable<bool> cfgWatcherMusic = instance.config.Bind("cfgWatcherMusic", true,
-            new ConfigurableInfo("Adds music tracks from the Watcher DLC to the Jukebox. No unlock required.", null, "", new object[]
+            new ConfigurableInfo("Add Watcher soundtrack to the Jukebox. No unlock required.", null, "", new object[]
             {
-                "Watcher Music"
+                "Watcher Jukebox"
             }));
         /*public static Configurable<bool> cfgMoveJukebox = instance.config.Bind("cfgMoveJukebox", true,
            new ConfigurableInfo("Move the Jukebox button to better fit the Watcher next to the other slugcats.", null, "", new object[]
@@ -86,7 +91,7 @@ namespace WatcherExpeditions
                 "Force unlock"
             }));
         public static Configurable<bool> cfgWatcher_KarmaFlower = instance.config.Bind("cfgWatcher_KarmaFlower", true,
-           new ConfigurableInfo("Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability.\nIf disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and vanilla rot regions.", null, "", new object[]
+           new ConfigurableInfo("Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability.\nIf disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.", null, "", new object[]
         {
                 "Karma Flowers all regions"
         }));
@@ -123,8 +128,8 @@ namespace WatcherExpeditions
             {
                 "Hunt - Barnacles"
             }));
-        public static Configurable<bool> cfgHunt_BigSandWorm = instance.config.Bind("cfgHunt_BigSandWorm", false,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Sand Worm. Similiar Monster Kelp, but stun you preventing fighting back and can hide, making them not fun.", null, "", new object[]
+        public static Configurable<bool> cfgHunt_BigSandWorm = instance.config.Bind("cfgHunt_BigSandWorm", true,
+            new ConfigurableInfo("Allow Hunting challenges to pick : Sand Worm. Similiar Monster Kelp, but stun you making escape not possible once grabbed, and can hide.", null, "", new object[]
             {
                 "Hunt - Sand Worms"
             }));
@@ -143,7 +148,11 @@ namespace WatcherExpeditions
             {
                 "Hunt - Bone Shaker"
             }));
-
+        public static Configurable<bool> cfgStowaway = instance.config.Bind("cfgStowaway", false,
+          new ConfigurableInfo("Add Stowaway to Sandbox, it can crash the game.", null, "", new object[]
+          {
+                "Stowaway"
+          }));
         public override void Initialize()
 		{
 			base.Initialize();
@@ -377,9 +386,10 @@ namespace WatcherExpeditions
             {
                 cfgWatcher_Unlock,
                 cfgWatcherMusic,
-                cfgSpinningTopDialogue,
-                cfgVanillaPassage,
+                cfgSandbox,
                 cfgCustomColorFix,
+                cfgVanillaPassage,
+                cfgSpinningTopDialogue,
             };
             array[3] = new ConfigurableBase[]
 {

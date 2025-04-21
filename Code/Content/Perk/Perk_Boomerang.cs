@@ -66,7 +66,7 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "watcher";
+                return "WatcherExpeditions";
             }
         }
     }

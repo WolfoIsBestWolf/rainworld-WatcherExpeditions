@@ -19,13 +19,13 @@ namespace WatcherExpeditions
             this.description = ChallengeTools.IGT.Translate("Infect <score_target> regions with sentient rot [<current_score>/<score_target>]").Replace("<score_target>", ValueConverter.ConvertToString<int>(this.target)).Replace("<current_score>", ValueConverter.ConvertToString<int>(this.rotted));
             base.UpdateDescription();
 
-            Debug.Log("RotSpreading_Challenge UpdateDescription");
+            //Debug.Log("RotSpreading_Challenge UpdateDescription");
             if (this.game != null && this.game.rainWorld.progression.currentSaveState != null)
             {
-                Debug.Log("Count : " + game.rainWorld.progression.currentSaveState.miscWorldSaveData.regionsInfectedBySentientRotSpread.Count);
+                //Debug.Log("Count : " + game.rainWorld.progression.currentSaveState.miscWorldSaveData.regionsInfectedBySentientRotSpread.Count);
                 foreach (string a in this.game.rainWorld.progression.currentSaveState.miscWorldSaveData.regionsInfectedBySentientRotSpread)
                 {
-                    Debug.Log("regionsInfectedBySentientRotSpread : " + a);
+                    //Debug.Log("regionsInfectedBySentientRotSpread : " + a);
                 }
             }
         }

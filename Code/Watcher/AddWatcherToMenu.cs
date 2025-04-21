@@ -102,6 +102,14 @@ namespace WatcherExpeditions
                 {
                     return true;
                 }
+                else if (Custom.rainWorld.progression.miscProgressionData.beaten_Watcher)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             return orig(manager, slugcat);
         }

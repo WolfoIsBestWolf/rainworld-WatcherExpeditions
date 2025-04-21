@@ -10,8 +10,8 @@ namespace WatcherExpeditions
     {
         public static void Start()
         {
-            On.Expedition.ExpeditionGame.ExSpawn += DisableEgg_ExpeditionGame_ExSpawn;
-            On.Expedition.ExpeditionGame.ExIndex += DisableEggExpeditionGame_ExIndex;
+            //On.Expedition.ExpeditionGame.ExSpawn += DisableEgg_ExpeditionGame_ExSpawn;
+            //On.Expedition.ExpeditionGame.ExIndex += DisableEggExpeditionGame_ExIndex;
 
             On.Expedition.NeuronDeliveryChallenge.ValidForThisSlugcat += NeuronDeliveryChallenge_ValidForThisSlugcat;
             On.Expedition.PearlDeliveryChallenge.ValidForThisSlugcat += PearlDeliveryChallenge_ValidForThisSlugcat;
