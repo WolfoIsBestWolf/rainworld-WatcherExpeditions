@@ -11,14 +11,17 @@ using UnityEngine;
 using Watcher;
 using Menu;
 using System;
+ 
 
 namespace WatcherExpeditions
 {
+
     [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.0.1")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
         public static bool slugbase = false;
+
         public void OnEnable()
         {
             On.RainWorld.OnModsInit += RainWorld_OnModsInit;
@@ -53,7 +56,7 @@ namespace WatcherExpeditions
             AddWatcherToMenu.Start();
             ST_ExpeditionStuff.Start();
 
-          
+            ArenaStuff.Start();
             JukeboxStuff.Add();
             JollyCoopAdditions.Start();
             PassageFix.Start();
@@ -70,7 +73,8 @@ namespace WatcherExpeditions
             On.Watcher.PrinceBehavior.PrinceConversation.TargetConversation += PrinceConversation_TargetConversation;
             //On.Watcher.PrinceBehavior.WillingToInspectItem +=
 
-            IL.PlayerGraphics.ApplyPalette += FixCustomColorsNotWorking;
+            //IL.PlayerGraphics.ApplyPalette += FixCustomColorsNotWorking;
+            Futile.atlasManager.LoadAtlas("atlases/watcher_expedition");
         }
 
     
@@ -85,14 +89,15 @@ namespace WatcherExpeditions
                 {
                     if (WConfig.cfgCustomColorFix.Value)
                     {
-                        if (Custom.rainWorld.options.jollyColorMode == Options.JollyColorMode.CUSTOM)
-                        {
-                            return false;
-                        }
                         if (PlayerGraphics.CustomColorsEnabled())
                         {
                             return false;
                         }
+                        if (ModManager.CoopAvailable && Custom.rainWorld.options.jollyColorMode == Options.JollyColorMode.CUSTOM)
+                        {
+                            return false;
+                        }
+                        
                     }
                     
                     return self;
@@ -113,31 +118,7 @@ namespace WatcherExpeditions
             return orig(highestConversationSeen, infections);
         }
 
-        private void AddBoomerang(ILContext il)
-        {
-            ILCursor c = new(il);
-            if (c.TryGotoNext(MoveType.Before,
-                x => x.MatchLdstr("unl-lantern")))
-            {
-                c.Emit(OpCodes.Ldarg_0);
-                c.EmitDelegate<System.Func<string, Room, string>>((unlock, room) =>
-                {
-                    if (unlock == "unl-watcher_boomerang")
-                    {
-                        WorldCoordinate pos12 = new WorldCoordinate(room.abstractRoom.index, room.shelterDoor.playerSpawnPos.x, room.shelterDoor.playerSpawnPos.y, 0);
-                        AbstractPhysicalObject abstractPhysicalObject13 = new AbstractPhysicalObject(room.world, WatcherEnums.AbstractObjectType.Boomerang, null, pos12, room.game.GetNewID());
-                        room.abstractRoom.entities.Add(abstractPhysicalObject13);
-                        abstractPhysicalObject13.Realize();
-                    }
-                    return unlock;
-                });
-            }
-            else
-            {
-                UnityEngine.Debug.Log("WatcherExpeditions: Spawn Boomerang");
-            }
-        }
-
+     
         public static void KarmaFlowerForWatchers(ILContext il)
         {
             ILCursor c = new(il);

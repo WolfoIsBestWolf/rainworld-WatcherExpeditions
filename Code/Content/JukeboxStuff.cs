@@ -20,15 +20,25 @@ namespace WatcherExpeditions
         public static string FirstTrack;
         public static string LastTrack;
         public static bool dump = false;
+        public static Dictionary<string, string>? tempDict;
+
 
         public static void Add()
         {
             On.Menu.MusicTrackButton.ctor += UnlockSongs;
             On.Expedition.ExpeditionProgression.GetUnlockedSongs += WatcherSongs;
             On.Expedition.ExpeditionProgression.TrackName += WatcherTrackName;
-          
+
+            On.Menu.MusicTrackContainer.ctor += MusicTrackContainer_ctor;
         }
- 
+
+        private static void MusicTrackContainer_ctor(On.Menu.MusicTrackContainer.orig_ctor orig, MusicTrackContainer self, Menu.Menu menu, MenuObject owner, Vector2 pos, List<string> trackFilenames)
+        {
+            tempDict = ExpeditionProgression.GetUnlockedSongs();
+            orig(self, menu, owner, pos, trackFilenames);
+            tempDict = null;
+        }
+
         private static string WatcherTrackName(On.Expedition.ExpeditionProgression.orig_TrackName orig, string filename)
         {
             if (filename == "BM_RWTW_BLUEENVOI")
@@ -59,7 +69,13 @@ namespace WatcherExpeditions
         }
 
         private static void UnlockSongs(On.Menu.MusicTrackButton.orig_ctor orig, Menu.MusicTrackButton self, Menu.Menu menu, Menu.MenuObject owner, string displayText, string singalText, Vector2 pos, Vector2 size, Menu.SelectOneButton[] buttonArray, int index)
-        {   
+        {
+            if (WConfig.cfgDebugInfo.Value)
+            {
+                ExpLog.Log(index + " | " + singalText + " | " + tempDict.ElementAt(index));
+            }
+           
+            singalText = tempDict.Keys.ElementAt(index);
             orig(self, menu, owner, displayText, singalText, pos, size, buttonArray, index);
             if (singalText == FirstTrack)
             {
@@ -84,14 +100,12 @@ namespace WatcherExpeditions
             {
                 List<string> list = new List<string>
                 {
-                      //"NA_43 - Isolation", //Not Watcher, Not a song
                       "RW_99 - Air Toxing",
                       "RW_100 - Lonesound 2",
                       "RW_101 - Bell of Gesture",
                       "RW_102 - Bio Oscillator",
                       "RW_103 - Cave Drop",
-                      "RW_104 - Chaos",
-                      "RW_105 - Delwijar",
+                     
                       "RW_106 - Evening at Peace",
                       "RW_107 - Evil Arp",
                       "RW_108 - Explorer",
@@ -101,16 +115,15 @@ namespace WatcherExpeditions
                       "RW_112 - Light Beams",
                       "RW_113 - Liquid Lead",
                       "RW_114 - Machine Riser",
-                      "RW_115 - Membrane",
-                      "RW_116 - Passive Flow",
+                      
+                      
                       "RW_117 - Porto",
                       "RW_118 - Ripple Visions",
                       "RW_119 - Sci Prad",
                       "RW_120 - Shimmery",
                       "RW_121 - Soft Gesture",
-                      "RW_122 - Speaking Systems 2",
-                      "RW_123 - Speaking Systems 3",
-                      "RW_124 - Theme of Youth",
+
+                      
                       "RW_125 - Timelapse",
                       "RW_126 - Distant Breeze",
                       "RW_127 - Whale Song",
@@ -134,46 +147,79 @@ namespace WatcherExpeditions
                       "RW_145 - Moon Dog",
                       "RW_146 - Glass Fields",
                       "RW_147 - Afterhours",
-                      "RW_148 - Ambient Arp",
-                      "RW_149 - Come and Go",
+                      "RW_148 - Ambient Arp",          
                       "RW_150 - Computer Tape",
-                      "RW_151 - Condemned",
                       "RW_152 - Cup",
-                      "RW_153 - Granular Mist",
                       "RW_154 - Groovy",
                       "RW_155 - Light of Hope",
-                      "RW_156 - Nightshade Follower",
-                      "RW_157 - Reactor Core",
+                      "RW_156 - Nightshade Follower",                    
                       "RW_158 - Rhythmic Pad",
                       "RW_159 - Roadkill",
-                      "RW_160 - Rubber Bass",
-                      "RW_161 - Childhoods End",
-                      "RW_162 - Weaver Energy",
+                      "RW_160 - Rubber Bass",                                    
                       "RW_163 - Skywhale Ride",
-                      "RW_164 - Rot Lizard",
                       "RW_165 - Drill Crab",
                       "RW_166 - Boxworm Firefly",
-                      "RW_167 - Bone Shakers",
                       "RW_168 - Big Moths",
                       "RW_169 - Grubs",
-                      "RW_170 - In Dreams",
-                      "RW_171 - Efflorescence",
-                      "RW_172 - Bathing",
-                      "RW_173 - Spinning Top Reprise",
                       "BM_RWTW_BLUEENVOI",
+                };
+                List<string> listEcho = new List<string>
+                {
+                      "RW_161 - Childhoods End", //Intro theme             
                       "RWTW_ST_ELSE_01",
                       "RWTW_ST_ELSE_02",
                       "RWTW_ST_ELSE_03",
                       "RWTW_ST_ELSE_04",
                       "RWTW_ST_ELSE_05",
-                };           
-                int length = original.Count+1;
-                FirstTrack = "mus-" + ValueConverter.ConvertToString<int>(original.Count);
+                      "RW_170 - In Dreams",
+                      "RW_149 - Come and Go",
+                      "RW_172 - Bathing",
+                      "RW_173 - Spinning Top Reprise",
+                      "RW_124 - Theme of Youth",
+                };
+                List<string> listRot = new List<string>
+                {
+                    "RW_104 - Chaos",
+                    "RW_105 - Delwijar",
+                    "RW_115 - Membrane",
+                    "RW_116 - Passive Flow",
+                    "RW_153 - Granular Mist",
+                    "RW_164 - Rot Lizard",
+                    "RW_167 - Bone Shakers",   
+                    "RW_157 - Reactor Core",
+                    "RW_122 - Speaking Systems 2",
+                    "RW_123 - Speaking Systems 3",
+                    "RW_171 - Efflorescence", //Rot End
+                    "RW_151 - Condemned",
+                    "RW_162 - Weaver Energy",
+                };
+                FirstTrack = "mus-w0";
                 for (int i = 0; i < list.Count; i++)
                 {
-                    original["mus-" + ValueConverter.ConvertToString<int>(i +length)] = list[i];
+                    original["mus-w" + ValueConverter.ConvertToString<int>(i)] = list[i];
                 }
-                LastTrack = "mus-" + ValueConverter.ConvertToString<int>(original.Count);
+                for (int i = 0; i < listEcho.Count; i++)
+                {
+                    original["mus-we" + ValueConverter.ConvertToString<int>(i)] = listEcho[i];
+                }
+                for (int i = 0; i < listRot.Count; i++)
+                {
+                    original["mus-wr" + ValueConverter.ConvertToString<int>(i)] = listRot[i];
+                }
+                LastTrack = "mus-wr" + listRot.Count;
+
+
+
+
+                /*
+                int length = original.Count+1;
+                FirstTrack = "mus-w" + ValueConverter.ConvertToString<int>(original.Count);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    original["mus-w" + ValueConverter.ConvertToString<int>(i +length)] = list[i];
+                }
+                LastTrack = "mus-w" + ValueConverter.ConvertToString<int>(original.Count);
+                */
                 if (!dump)
                 {
                     if (WConfig.cfgDebugInfo.Value)
@@ -182,16 +228,16 @@ namespace WatcherExpeditions
                         ExpLog.Log(LastTrack);
                         dump = true;
 
-                        /*for (int i = 0; i < original.Count; i++)
+                        for (int i = 0; i < original.Count; i++)
                         {
-                            ExpLog.Log(original.Keys.ElementAt(i));
-                        };*/
-                        string enw = "";
+                            ExpLog.Log(original.ElementAt(i).ToString());
+                        };
+                        /*string enw = "";
                         for (int i = 0; i < original.Count+1; i++)
                         {
                             original.TryGetValue("mus-" + i, out enw);
                             ExpLog.Log("mus-" + i + " : " + enw);
-                        }
+                        }*/
                     }                
                 }
             }

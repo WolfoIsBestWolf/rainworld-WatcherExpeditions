@@ -18,7 +18,7 @@ namespace WatcherExpeditions
         public static void Start()
         {
             On.Menu.CharacterSelectPage.GetSlugcatPortrait += FixWatcherPortrait;
-            On.Menu.CharacterSelectPage.UpdateSelectedSlugcat += FixWatcherAndSlugbaseWeirdName;
+            On.Menu.CharacterSelectPage.UpdateSelectedSlugcat += DescriptionName;
             On.Menu.MenuScene.BuildVoidBathScene += MenuScene_BuildVoidBathScene;
 
             On.Expedition.ExpeditionData.GetPlayableCharacters += ExpeditionData_GetPlayableCharacters;
@@ -26,10 +26,22 @@ namespace WatcherExpeditions
 
             IL.Menu.CharacterSelectPage.ctor += MoveSlugsAndJukebox;
 
-            On.JollyCoop.JollyMenu.JollyPlayerSelector.JollyPortraitName += FixWatcherPortrait_Jolly;
-            On.JollyCoop.JollyCustom.SlugClassMenu += AllowWatcherJollyExpedition;
         }
+        private static SlugcatStats.Name AllowWatcherJollyExpedition(On.JollyCoop.JollyCustom.orig_SlugClassMenu orig, int playerNumber, SlugcatStats.Name fallBack)
+        {
+            Debug.Log(Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass);
+            Debug.Log(orig(playerNumber, fallBack));
+            if (Custom.rainWorld.ExpeditionMode)
+            {
+                SlugcatStats.Name name = Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass;
+                if (ModManager.Watcher && name == WatcherEnums.SlugcatStatsName.Watcher)
+                {
+                    return WatcherEnums.SlugcatStatsName.Watcher;
+                }
+            }
 
+            return orig(playerNumber, fallBack);
+        }
         private static void MenuScene_BuildVoidBathScene(On.Menu.MenuScene.orig_BuildVoidBathScene orig, MenuScene self, int index)
         {       
             if (Custom.rainWorld.ExpeditionMode)
@@ -60,29 +72,9 @@ namespace WatcherExpeditions
             orig(self, index);
         }
 
-        private static SlugcatStats.Name AllowWatcherJollyExpedition(On.JollyCoop.JollyCustom.orig_SlugClassMenu orig, int playerNumber, SlugcatStats.Name fallBack)
-        {
-            if (Custom.rainWorld.ExpeditionMode)
-            {
-                SlugcatStats.Name name = Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass;
-                if (ModManager.Watcher && name == WatcherEnums.SlugcatStatsName.Watcher)
-                {
-                    return WatcherEnums.SlugcatStatsName.Watcher;
-                }
-            }
+    
 
-            return orig(playerNumber, fallBack);
-        }
-
-        private static string FixWatcherPortrait_Jolly(On.JollyCoop.JollyMenu.JollyPlayerSelector.orig_JollyPortraitName orig, JollyCoop.JollyMenu.JollyPlayerSelector self, SlugcatStats.Name className, int colorIndexFile)
-        {
-            if (className == WatcherEnums.SlugcatStatsName.Watcher)
-            {
-                return "multiplayerportrait31";
-            }
-            return orig(self, className, colorIndexFile);
-        }
-
+   
      
 
         private static int JollySetupDialog_GetFileIndex(On.JollyCoop.JollyMenu.JollySetupDialog.orig_GetFileIndex orig, JollyCoop.JollyMenu.JollySetupDialog self, SlugcatStats.Name name)
@@ -244,7 +236,7 @@ namespace WatcherExpeditions
             return temp;
         }
 
-        private static void FixWatcherAndSlugbaseWeirdName(On.Menu.CharacterSelectPage.orig_UpdateSelectedSlugcat orig, CharacterSelectPage self, int num)
+        private static void DescriptionName(On.Menu.CharacterSelectPage.orig_UpdateSelectedSlugcat orig, CharacterSelectPage self, int num)
         {
             orig(self, num);
             if (ModManager.Watcher && ExpeditionGame.playableCharacters[num] == WatcherEnums.SlugcatStatsName.Watcher)
@@ -253,6 +245,8 @@ namespace WatcherExpeditions
                 //self.slugcatScene = WatcherEnums.MenuSceneID.Ending_SpinningTop2;
                 self.slugcatScene = WatcherEnums.MenuSceneID.Ending_VoidBath2;
                 self.slugcatName.text = self.menu.Translate("THE WATCHER");
+                //self.slugcatDescription.text = "A pacifist at heart, The Saint endures the bitter cold and searches<LINE>for their purpose".Replace("<LINE>", Environment.NewLine);
+                self.slugcatDescription.text = "As the Watcher, form new paths and search within<LINE>the ripples with newfound purpose.".Replace("<LINE>", Environment.NewLine);
             }
         }
 

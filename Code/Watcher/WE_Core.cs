@@ -340,7 +340,7 @@ namespace WatcherExpeditions
         private static void WatcherExpeditionStart(On.SaveState.orig_ctor orig, SaveState self, SlugcatStats.Name saveStateNumber, PlayerProgression progression)
         {
             orig(self,saveStateNumber, progression);
-            if (ModManager.Expedition && Custom.rainWorld.ExpeditionMode && saveStateNumber == WatcherEnums.SlugcatStatsName.Watcher)
+            if (ModManager.Expedition && Custom.rainWorld.ExpeditionMode)
             {
                 self.miscWorldSaveData.camoTutorialCounter++;
                 self.miscWorldSaveData.usedCamoAbility++;
@@ -349,38 +349,38 @@ namespace WatcherExpeditions
                 self.miscWorldSaveData.badWarpTutorialCounter++;
                 self.miscWorldSaveData.warpFatigueTutorialCounter++;
                 self.miscWorldSaveData.warpExhaustionTutorialCounter = 5;
-         
-
-                self.deathPersistentSaveData.spinningTopRotEncounter = true;     
-                self.miscWorldSaveData.numberOfPrinceEncounters = 5;
-                //This would remove all convos, idk if that's good
-                //self.miscWorldSaveData.highestPrinceConversationSeen = 2000; //Idk dude fuck this guy
-                self.miscWorldSaveData.visitedShopRoom = true; //Makes it so you spawn in the middle of Ancient Urban
-
-                self.miscWorldSaveData.seenSpinningTopDream = true; //Dreams are generally disabled I think?
-                self.miscWorldSaveData.seenRotDream = true;
-
-                
-
-                //self.deathPersistentSaveData.rippleLevel = (WConfig.cfgWatcher_StartingRipple.Value+1f)/2f;
-                self.deathPersistentSaveData.maximumRippleLevel = (WConfig.cfgWatcher_StartingRippleMax.Value + 1f) / 2f; ;
-                self.deathPersistentSaveData.minimumRippleLevel = (WConfig.cfgWatcher_StartingRippleMin.Value + 1f) / 2f; ;
-                self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.minimumRippleLevel + ExpeditionGame.tempKarma / 2f;
-                self.deathPersistentSaveData.karmaCap = 9;
-                /*if (self.deathPersistentSaveData.rippleLevel < self.deathPersistentSaveData.minimumRippleLevel)
+                if (saveStateNumber == WatcherEnums.SlugcatStatsName.Watcher)
                 {
-                    self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.minimumRippleLevel;
+                    self.deathPersistentSaveData.spinningTopRotEncounter = true;
+                    self.miscWorldSaveData.numberOfPrinceEncounters = 5;
+                    //This would remove all convos, idk if that's good
+                    //self.miscWorldSaveData.highestPrinceConversationSeen = 2000; //Idk dude fuck this guy
+                    self.miscWorldSaveData.visitedShopRoom = true; //Makes it so you spawn in the middle of Ancient Urban
+
+                    self.miscWorldSaveData.seenSpinningTopDream = true; //Dreams are generally disabled I think?
+                    self.miscWorldSaveData.seenRotDream = true;
+
+
+
+                    //self.deathPersistentSaveData.rippleLevel = (WConfig.cfgWatcher_StartingRipple.Value+1f)/2f;
+                    self.deathPersistentSaveData.maximumRippleLevel = (WConfig.cfgWatcher_StartingRippleMax.Value + 1f) / 2f; ;
+                    self.deathPersistentSaveData.minimumRippleLevel = (WConfig.cfgWatcher_StartingRippleMin.Value + 1f) / 2f; ;
+                    self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.minimumRippleLevel + ExpeditionGame.tempKarma / 2f;
+                    self.deathPersistentSaveData.karmaCap = 9;
+                    /*if (self.deathPersistentSaveData.rippleLevel < self.deathPersistentSaveData.minimumRippleLevel)
+                    {
+                        self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.minimumRippleLevel;
+                    }
+                    else if (self.deathPersistentSaveData.rippleLevel > self.deathPersistentSaveData.maximumRippleLevel)
+                    {
+                        self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.maximumRippleLevel;
+                    }*/
+
+                    self.deathPersistentSaveData.spinningTopEncounters.Add(39);//WAUA_TOYS ST
+                    self.deathPersistentSaveData.spinningTopEncounters.Add(15);//CC
+                    self.deathPersistentSaveData.spinningTopEncounters.Add(16);//SL
+                    self.deathPersistentSaveData.spinningTopEncounters.Add(17);//FH
                 }
-                else if (self.deathPersistentSaveData.rippleLevel > self.deathPersistentSaveData.maximumRippleLevel)
-                {
-                    self.deathPersistentSaveData.rippleLevel = self.deathPersistentSaveData.maximumRippleLevel;
-                }*/
-
-                self.deathPersistentSaveData.spinningTopEncounters.Add(39);//WAUA_TOYS ST
-                self.deathPersistentSaveData.spinningTopEncounters.Add(15);//CC
-                self.deathPersistentSaveData.spinningTopEncounters.Add(16);//SL
-                self.deathPersistentSaveData.spinningTopEncounters.Add(17);//FH
-
             }
         }
 

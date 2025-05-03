@@ -9,7 +9,7 @@ using UnityEngine;
 
 
  
-namespace WatcherExpeditions
+namespace ExpeditionExtraConfig
 {
     public class Perk_PoisonSpear : Modding.Expedition.CustomPerk
     {
@@ -17,7 +17,7 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "unl-watcher_poisonspear";
+                return "unl-watcher-PoisonSpear";
             }
         }
         public override bool UnlockedByDefault
@@ -31,35 +31,35 @@ namespace WatcherExpeditions
         {
             get
             {
-                return new Color(0.4f,1f,0.4f);
+                return new Color(0.3f,0.9f,0.33f);
             }
         }
         public override string SpriteName
         {
             get
             {
-                return "Symbol_Spear";
+                return "Symbol_PoisonSpear";
             }
         }
         public override string ManualDescription
         {
             get
             {
-                return "Some spears spawn with poison applied";
+                return Description;
             }
         }
         public override string Description
         {
             get
             {
-                return "Some spears spawn with poison applied";
+                return "Start the expedition with a poison tipped Spear";
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Poison Spears";
+                return "Poison Spear";
             }
         }
         public override string Group

@@ -17,7 +17,7 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "unl-watcher_boomerang";
+                return "unl-watcher-boomerang";
             }
         }
         public override bool UnlockedByDefault
@@ -45,14 +45,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "Start the expedition with a Boomerang";
+                return Description;
             }
         }
         public override string Description
         {
             get
             {
-                return "Start the expedition with a Boomerang";
+                return "All rocks have a 50% chance to be replaced with a Boomerang";
             }
         }
         public override string DisplayName
@@ -69,5 +69,6 @@ namespace WatcherExpeditions
                 return "WatcherExpeditions";
             }
         }
+         
     }
 }

@@ -17,7 +17,7 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "unl-watcher_permwarp";
+                return "unl-watcher-permwarp";
             }
         }
         public override bool UnlockedByDefault
@@ -31,14 +31,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return RainWorld.RippleColor;
+                return RainWorld.RippleGold;
             }
         }
         public override string SpriteName
         {
             get
             {
-                return "Kill_Daddy";
+                return "Symbol_RipplePerk";
             }
         }
         public override string ManualDescription
@@ -52,7 +52,7 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "Created warps are permament instead of expiring after 5 cycles.";
+                return "Formed paths (Warps) are permament instead of expiring after 5 cycles.\nWatcher Exclusive";
             }
         }
         public override string DisplayName
@@ -68,6 +68,10 @@ namespace WatcherExpeditions
             {
                 return "WatcherExpeditions";
             }
+        }
+        public override bool AvailableForSlugcat(SlugcatStats.Name name)
+        {
+            return name == WatcherEnums.SlugcatStatsName.Watcher;
         }
     }
 }
