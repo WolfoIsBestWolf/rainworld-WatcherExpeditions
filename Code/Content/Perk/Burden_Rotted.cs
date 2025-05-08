@@ -46,14 +46,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "All regions start entirely overtaken and infected with rot.\nThis is meant to be for the challenge only.";
+                return ChallengeTools.IGT.Translate("All regions start entirely overtaken and infected with rot. This is meant to be for the challenge only.");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Rotten";
+                return ChallengeTools.IGT.Translate("Rotten");
             }
         }
         public override void ApplyHooks()
