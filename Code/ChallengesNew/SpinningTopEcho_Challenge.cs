@@ -15,7 +15,7 @@ namespace WatcherExpeditions
         public override void UpdateDescription()
         {
             string text = Region.GetRegionFullName(this.regionName, ExpeditionData.slugcatPlayer);
-            this.description = "Visit Spinning Top in <region>".Replace("<region>", ChallengeTools.IGT.Translate(text));
+            this.description = ChallengeTools.IGT.Translate("Visit Spinning Top in <region>").Replace("<region>", ChallengeTools.IGT.Translate(text));
             base.UpdateDescription();
         }
 
@@ -93,7 +93,7 @@ namespace WatcherExpeditions
  
         public override string ChallengeName()
         {
-            return "Spinning Top";
+            return ChallengeTools.IGT.Translate("Spinning Top");
         }
 
  
