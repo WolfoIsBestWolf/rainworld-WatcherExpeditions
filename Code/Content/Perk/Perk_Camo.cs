@@ -55,14 +55,14 @@ namespace WatcherExpeditions
             get
             {
                 //return "Hold the SPECIAL button to camouflage from predators";
-                return "Gain the ability to camouflage for a short time from predators by holding the SPECIAL button.";
+                return ChallengeTools.IGT.Translate("Gain the ability to camouflage for a short time from predators by holding the SPECIAL button.");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Camouflage";
+                return ChallengeTools.IGT.Translate("Camouflage");
             }
         }
         public override string Group
