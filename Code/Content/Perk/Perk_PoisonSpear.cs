@@ -52,14 +52,14 @@ namespace ExpeditionExtraConfig
         {
             get
             {
-                return "Start the expedition with a poison tipped Spear";
+                return ChallengeTools.IGT.Translate("Start the expedition with a poison tipped Spear");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Poison Spear";
+                return ChallengeTools.IGT.Translate("Poison Spear");
             }
         }
         public override string Group
