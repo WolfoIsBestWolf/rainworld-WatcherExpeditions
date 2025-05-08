@@ -52,14 +52,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "All rocks have a 50% chance to be replaced with a Boomerang";
+                return ChallengeTools.IGT.Translate("All rocks have a 50% chance to be replaced with a Boomerang");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Boomerang";
+                return ChallengeTools.IGT.Translate("Boomerang");
             }
         }
         public override string Group
