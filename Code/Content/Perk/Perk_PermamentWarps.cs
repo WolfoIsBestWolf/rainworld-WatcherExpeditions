@@ -52,14 +52,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "Formed paths (Warps) are permament instead of expiring after 5 cycles.\nWatcher Exclusive";
+                return ChallengeTools.IGT.Translate("Formed paths (Warps) are permament instead of expiring after 5 cycles. Watcher Exclusive");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Permament Warps";
+                return ChallengeTools.IGT.Translate("Permament Warps");
             }
         }
         public override string Group
