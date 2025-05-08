@@ -46,14 +46,14 @@ namespace WatcherExpeditions
         {
             get
             {
-                return "All regions start entirely overtaken and infected with rot.\nThis is meant to be for the challenge only.";
+                return T.TranslateLineBreak("Burden_Rot_Desc");
             }
         }
         public override string DisplayName
         {
             get
             {
-                return "Rotten";
+                return T.Translate("Burden_Rot_Name");
             }
         }
         public override void ApplyHooks()

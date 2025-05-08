@@ -1,0 +1,25 @@
+﻿Perk_Camo_Name|Camouflage
+Perk_Camo_Desc|Gain the ability to camouflage from predators for a short time by holding the SPECIAL button.
+Perk_LongWarp_Name|Permament Warps
+Perk_LongWarp_Desc|Formed warps are permament instead of expiring after 5 cycles.<LINE>Watcher Exclusive
+Perk_PoisonSpear_Name|Poison Spear
+Perk_PoisonSpear_Desc|Start the expedition with a poison tipped Spear
+Perk_Boomerang_Name|Boomerang Fever
+Perk_Boomerang_Desc|All rocks have a chance to be replaced with a Boomerang
+
+Burden_Rot_Name|Rotten
+Burden_Rot_Desc|All regions start entirely overtaken and infected with rot.<LINE>This is meant to be for the challenge only.
+
+Challenge_Rot_Name|Rot Spreading
+Challenge_Rot_Desc|Infect <score_target> regions with sentient rot [<current_score>/<score_target>]
+Challenge_ST_Name|Spinning Top
+Challenge_ST_Desc|Visit Spinning Top in <region>
+Challenge_Warp_Name|Warp Cycle
+Challenge_Warp_Desc|Warp <target> times in one cycle [<current>/<target>]
+challenge_Prince_Name|Prince Delivery
+challenge_Prince_Desc|Deliver the <item> to The Prince
+
+Mission_Rot|Rot World
+Watcher_Ex_Description|As the Watcher, form new paths and search within<LINE>the ripples with newfound purpose.
+
+Option_Watcher|Probably won't translate options

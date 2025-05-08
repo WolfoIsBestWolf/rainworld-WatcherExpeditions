@@ -52,6 +52,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.TranslateLineBreak("Perk_LongWarp_Desc");
                 return "Formed paths (Warps) are permament instead of expiring after 5 cycles.\nWatcher Exclusive";
             }
         }
@@ -59,6 +60,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.Translate("Perk_LongWarp_Name");
                 return "Permament Warps";
             }
         }

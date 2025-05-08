@@ -52,6 +52,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.Translate("Perk_Boomerang_Desc");
                 return "All rocks have a 50% chance to be replaced with a Boomerang";
             }
         }
@@ -59,6 +60,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.Translate("Perk_Boomerang_Name");
                 return "Boomerang";
             }
         }

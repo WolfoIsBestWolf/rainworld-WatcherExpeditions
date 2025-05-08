@@ -1,0 +1,7 @@
+{
+    "key" : "we_challenge_rot2",
+    "type" : "milestone",
+    "color" : "a3a3a3",
+    "conditions" : ["ttyp-RotSpreading_Challenge-4"],
+    "reward" : ["mus-wr4","mus-wr5","mus-wr6","mus-wr7","mus-wr8"],
+}

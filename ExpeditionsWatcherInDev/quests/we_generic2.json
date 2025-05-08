@@ -1,0 +1,7 @@
+{
+    "key" : "we_generic2",
+    "type" : "expedition",
+    "color" : "a3a3a3",
+    "conditions" : ["slug-Watcher","hid-1"],
+    "reward" : ["mus-w1"],
+}

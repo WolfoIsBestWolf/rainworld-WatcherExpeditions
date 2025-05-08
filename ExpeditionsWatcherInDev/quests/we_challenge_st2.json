@@ -1,0 +1,7 @@
+{
+    "key" : "we_challenge_st2",
+    "type" : "milestone",
+    "color" : "a3a3a3",
+    "conditions" : ["ttyp-ST_EchoChallenge-5"],
+    "reward" : ["mus-we0","mus-we6","mus-we7","mus-we8","mus-we9","mus-we10"],
+}

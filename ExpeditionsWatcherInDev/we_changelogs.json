@@ -1,0 +1,21 @@
+v1.1.0
+Added Camo Perk
+Added Poison Spear Perk
+Added Longer Warps Perk
+Added Watcher to Arena
+Made Rot Mission into a Burden
+Fixed bug where Slugbase might remove Watcher from Co-op Expedition.
+Co-op Watchers should no longer leave mini ripples.
+
+v1.0.3
+Fixed Big Sand Worm breaking Sandbox if regular Sand Worm isn't spawned.
+
+v1.0.2
+-Added Sandbox tokens cuz I want them and some dude commented it.
+-Fixed Mission being in (folder name tab) instead of ModID tab. (Vanilla issue)
+
+v1.0.1
+-Fixed music not actually being unlocked
+-Coop ripple no longer requires Jolly-Coop enabled
+-Egg not working if unlocked
+-Added some basic quests to match vanilla

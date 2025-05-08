@@ -1,0 +1,124 @@
+This is a mod that adds Watcher as a selectable character in Expedition mode.
+Adds all the Watcher creatures and Watcher to Sandbox/Arena because sure why not.
+Adds all the Watcher ost to the Jukebox
+
+[b][h1]Expeditions:
+[/h1][/b]Start in random Watcher region. (non story, non rot region)
+Start with 6 Ripple, 9 max ripple and 5 minimum ripple.
+Expedition will end if you die at your lowest Ripple.
+Spinning Top will not increase max & min Ripple.
+
+Karma Flowers will still spawn despite Expedition normally removing them.
+Normally in all regions, but if that is disabled only in Outer Rim, Daemon & Shattered Terrace
+
+The Rot will have bloomed, but he has no purpose.
+Game wont force you into Outer Rim. (50% chance to replace bad warps is always there)
+The expedition will end prematurely if you enter the Bedroom in Ancient Urban.
+Ancient Urban can be entered without needing 9 Ripple.
+
+
+[b][h1]Challenges:
+[/h1][/b]Most Watcher enemies can show up as Hunt challenges.
+Shattered Terrace and Rot Regions are exluded.
+
+Vista points have been added to some watcher regions, not all.
+
+Find Spinning Top in one of the 13 Regions they spawn in. 
+The Echo Challenge replacement.
+
+New Challenge : Infect 3-9 regions with Rot. 5 at default difficulty. 
+Kind of a Neuron Delivery replacement.  
+
+(Would do Prince Delivery, but he has no unique dialogue, nor are there new colored pearls yet)
+
+
+[b][h1]Content:
+[/h1][/b]A Perk where you gain Watchers Camo
+A Perk where you start with a Poison Spear.
+A Watcher Exclusive Perk where created Warps stay open forever, instead of closing after 5 cycles.
+
+A burden where every region starts at 100% rot and a Mission associated with it.
+
+
+[b][h1]Other
+[/h1][/b]
+Obviously ending scripts are disabled.
+OuterRim_Desert6 will always have a exit portal, not just when at too early in progression.
+
+Passaging will work if you use that unlock. It will use the normal area screen because the Warp Sphere is incompatible with Passages. 
+Areas will be blank screens as there is no art for them, use top right to just select the area you want.
+There is also a config to allow this in Watcher Campaign.
+
+Fixes Custom Colors not working, Remix and Jolly.
+
+Watcher Expedition Co-op seems to work. Portals may throw you a unusual amount.
+Using multiple Watchers in Co-op is fine for the most part. Ripple Space may be confusing and only 1 Watcher seems to get the cosmetic ripple trail.
+Using Watcher outside of a Watcher Expedition will allow him to Camo and Hover as if he had 5 Ripple.
+Obviously he cannot make Portals outside of his Expeditions.
+
+Only player 1 Watcher will leave mini ripples.
+
+
+I do not know if official support is coming, there is some reference to Watcher in Expedition code but not anything too meaningful.
+
+
+[b][h1]Vista Locations:
+[/h1][/b]If you do not like blindly exploring to find Vistas, you could use Expedition Extra Config for a vista map.
+Alternatively here are the room codes I chose.
+[table]
+    [tr]
+        [th][b]Region[/b][/th]
+        [th][b]Rooms[/b][/th]
+    [/tr]
+    [tr]
+        [td]Fetid Glen (WARC)[/td]
+        [td]WARC_B02 | WARC_C09 | WARC_A05[/td]
+    [/tr]
+    [tr]
+        [td]Cold Storage (WARD)[/td]
+        [td]WARD_E26 | WARD_R05 | WARD_R07[/td]
+    [/tr]
+    [tr]
+        [td]The Surface (WARG)[/td]
+        [td]WARG_A06_Future | WARG_O05_Future | WARG_O06_Future[/td]
+    [/tr]
+    [tr]
+        [td]Signal Spires (WPTA)[/td]
+        [td]WPTA_C02 | WPTA_D04 | WPTA_F02[/td]
+    [/tr]
+    [tr]
+        [td]Coral Caves (WRFA)[/td]
+        [td]WRFA_A07 | WRFA_F05 | WRFA_I01[/td]
+    [/tr]
+    [tr]
+        [td]Rusted Wrecks (WRRA)[/td]
+        [td]WRRA_C04 | WRRA_D01 | WRRA_L01[/td]
+    [/tr]
+	[tr]
+        [td]Torrential Railways (WSKA)[/td]
+        [td]WSKA_D01 | WSKA_D19 | WSKA_D27[/td]
+    [/tr]
+	[tr]
+        [td]Sunlit Port (WSKB)[/td]
+        [td]WSKB_C05 | WSKB_C11 | WSKB_C15[/td]
+    [/tr]
+	[tr]
+        [td]Desolate Tract (WTDB)[/td]
+        [td]WTDB_A04 | WTDB_A22 | WTDB_A33[/td]
+    [/tr]
+	[tr]
+        [td]Heat Ducts (WARE)[/td]
+        [td]WARE_H03 | WARE_H06 | WARE_H24[/td]
+    [/tr]
+	[tr]
+        [td]Turbulent Pump (WRFB)[/td]
+        [td]WRFB_A11 | WRFB_B05 | WRFB_D01[/td]
+    [/tr]
+[/table]
+
+
+[b][h1]Known Issues:
+[/h1][/b]
+Camo Perk might be a bit jank looking on some character. (Gourmand is weirdly square if you have it on)
+
+If you have issues, tell me what is in "Rain World/exception.log" or contact me on Discord or GitHub.

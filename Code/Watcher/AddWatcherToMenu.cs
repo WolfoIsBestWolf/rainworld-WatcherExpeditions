@@ -245,8 +245,7 @@ namespace WatcherExpeditions
                 //self.slugcatScene = WatcherEnums.MenuSceneID.Ending_SpinningTop2;
                 self.slugcatScene = WatcherEnums.MenuSceneID.Ending_VoidBath2;
                 self.slugcatName.text = self.menu.Translate("THE WATCHER");
-                //self.slugcatDescription.text = "A pacifist at heart, The Saint endures the bitter cold and searches<LINE>for their purpose".Replace("<LINE>", Environment.NewLine);
-                self.slugcatDescription.text = "As the Watcher, form new paths and search within<LINE>the ripples with newfound purpose.".Replace("<LINE>", Environment.NewLine);
+                self.slugcatDescription.text = T.TranslateLineBreak("Watcher_Ex_Description");
             }
         }
 
