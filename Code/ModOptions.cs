@@ -159,7 +159,7 @@ namespace WatcherExpeditions
 			this.Tabs = new OpTab[]
 			{
                 new OpTab(this, Translate("Watcher")),
-                new OpTab(this, Translate("~~~"))
+                new OpTab(this, "~~~")
             };
 			this.AddCheckbox();
         }
