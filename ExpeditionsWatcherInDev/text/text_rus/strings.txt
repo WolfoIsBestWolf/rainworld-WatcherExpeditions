@@ -1,0 +1,87 @@
+WatcherExpeditions-name|Экспедиции для Созерцателя
+WatcherExpeditions-description|Добавляет Созерцателя в игровой режим Экспедиции.
+///Меню
+Watcher_Ex_Description|Прокладывай новые пути и ищи в Ряби новую цель.
+///Ремикс
+~Watcher Expedition Mod~|~Экспедиции для Созерцателя~
+Unofficial Watcher Expeditions.|Неофициальные экспедиции для Созерцателя.
+Watcher|Созерцатель
+///Рябь
+Ripple|Рябь
+Starting Ripple|Начальная Рябь
+Starting amount of Ripple. The karma replacement.|Начальная величина Ряби. Замена кармы.
+Starting max Ripple|Начальная макс. Рябь
+Starting amount of max Ripple. You need 3 max Ripple to open Portals. 5 Ripple to hover. 8 Ripple to teleport to all Regions. 9 Ripple to enter Daemon.|Начальная величина максимальной Ряби. Тебе нужна 3-я, чтобы открывать Порталы. 5-я для парения. 8-я для телепортации во все регионы. 9-я для входа к Искусителю.
+Starting min Ripple|Начальная мин. Рябь
+Starting amount of minimum Ripple. If you didn't know, your minimum increases as you visit Spinning Top more times.|Начальная величина минимальной Ряби. Если ты не знал, твоя минимальная Рябь увеличивается по мере того, как ты посещаешь Волчка.
+Karma Flowers all regions|Цветы Кармы во всех регионах
+Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability. If disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.|Разрешить Цветам Кармы появляться в каждом регионе во время экспедиций. Если отключено, то они всё равно будут появляться в Внешнем кольце, Разбитой террасе, Искусителе и заражённых регионах.
+///Общее
+General|Общее
+Force unlock|Принудительно разблокировать
+Unlock the Watcher Expedition regardless of campaign completion.|Разблокировать экспедиции независимо от завершения кампании Созерцателя.
+Watcher Jukebox|Музыка
+Add Watcher soundtrack to the Jukebox. No unlock required.|Добавить саундтреки Созерцателя в музыкальный автомат. Разблокировка не требуется.
+Watcher Sandbox|Песочница
+Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement. Roz Lizards aren't really possible since they aren't a unique creature.|Добавить существ и предметы Созерцателя в Песочницу и Арену. Разблокировка не требуется.
+Fix Custom Color|Исправить Кастомный Цвет
+Watcher has his body color overritten with the areas shade of black, ignoring Custom Colors, Jolly Custom Colors and his default set dark blue. This makes it so Remix Custom and Jolly Custom colors work.|Цвет тела Созерцателя был заменён на чёрный. Благодаря этому цвета Ремикса и Jolly Co-op работают.
+Passages for Watcher Campaign|Переходы
+Enable functional but black screen passages in the Watcher Campaign.  Blackscreens for areas as it's not compatible with the Warp Sphere and there is no art for the new areas.|Включить переходы на черном экране в кампании Созерцателя. Черные экраны, поскольку для новых областей нет рисунков.
+Spinning Top speaking|Волчок
+Allow Spinning Top to speak. It will choose dialogues in order.|Разрешить Волчку говорить. Он будет выбирать диалоги по порядку.
+///Rot
+Rot|Гниль
+Rot Spreading Challenge|Испытания Заражение гнилью
+Challenge where you need to infect regions to beat it.  5 with normal difficulty, range of 3-9.|Испытания, в которых тебе нужно заразить регионы, чтобы победить. 5 с обычной сложностью, диапазон 3-9.
+Rot Dimension - Shelters|Измерение Гнили — Убежища
+Expeditions will be able to start in Rot Regions. You will need to find an exit which then teleports you to a random region. Never Outer Rim|Экспедиции можно будет начинать в регионах Гнили. Тебе нужно будет найти выход, который затем телепортирует тебя в случайный регион. Никогда за пределы Внешнего кольца.
+Rot Dimension - Hunt|Измерение Гнили — Охота
+Hunts count enemies within Rot Regions, such as DLLs and Red Centipedes.  As you have no choice in what Rot Region you get teleported to, this isn't recommended.|Миссии охоты учитывают врагов в регионах Гнили, таких как Отцы-долгоноги и Красные сколопендры. Поскольку у тебя нет выбора, в какой регион Гнили тебя телепортирует, эта настройка не рекомендуется.
+Hunt - Bone Shaker|Охота — Костотряс
+Allow Hunting challenges to pick : Bone Shaker. They only appear in rot regions and can be killed from the top, by knocking them over. |Разрешить выбирать охотничьи задания: Костотряс. Они появляются только в местах гниения, и их можно убить, сбив с ног.
+///Hunts
+Hunts|Охота
+Hunt - Barnacles|Охота — Усоноги
+Allow Hunting challenges to pick : Barnacle. As of 1.10.2 they can be desheled with Snails.|Разрешить выбирать охотничьи задания: Усоноги. Начиная с версии 1.10.2 их можно очищать с помощью улиток.
+Hunt - Big Moth|Охота — Большая моль
+Allow Hunting challenges to pick : Big Moth. With 1.10.2 these seem more fight-able and escapeable. |Разрешить выбирать охотничьи задания: Большая моль. В версии 1.10.2 они кажутся более боеспособными и способными к побегу.
+Hunt - Sand Worms|Охота — Песчаный червь
+Allow Hunting challenges to pick : Sand Worm. Similiar Monster Kelp, but stun you making escape not possible once grabbed, and can hide.|Разрешить выбирать охотничьи задания: Песчаный червь. Похож на морского монстра, но оглушает, не давая сбежать, если схватит, и может прятаться.
+Hunt - Box Worm|Охота — Коробчатый червь
+Allow Hunting challenges to pick : Box Worm. Box Worms can easily trap you, need to be activated before being killable, and aren't much fun to fight. Uninhabitated Box Worms are unkillable.|Разрешить выбирать охотничьи задания: Коробчатый червь. Коробчатые черви могут легко заманить тебя в ловушку, их нужно активировать, прежде чем можно будет их убить. Необитаемые коробчатые черви неуязвимы.
+///~~~
+Info Dump|Выгрузить информацию
+Dump a bunch of info|Выгрузить кучу информации.
+///???
+Echo changes max/min Ripple|Мин/макс Рябь отголоска
+Allow Spinning Top to increase maximum and minimum Ripple amount. Still sets Ripple to the highest it can be. Echoes do not in vanilla Expedition.|Разрешить Волчку увеличивать максимальную и минимальную величину Ряби. По-прежнему устанавливает максимально возможную Рябь. Отголосков нет в стандартной Экспедиции.
+Max Ripple difference|Макс. разница в Ряби
+Your max and minimum Ripple will be at most this far apart. |Твоя максимальная и минимальная Рябь будет находиться не более чем на таком расстоянии друг от друга.
+Move Jukebox button|Переместить кнопку проигрывателя
+Move the Jukebox button to better fit the Watcher next to the other slugcats.|Переместить кнопку проигрывателя, чтобы Созерцатель поместился рядом с другими слизнекотами.
+Shattered Terrance|Разбитая терраса
+Expeditions can start in Shattered Terrance and Hunt challenges will count creatures in it.|Экспедиции могут начинаться в Разбитой террасе и охотничьи задания будут подсчитывать количество существ в ней.
+Carry over Warp Map progress|Перенос прогресса деформируемой карты
+Carry over discovered Warps that always have the same destination.|Перенос обнаруженных перекосов, которые всегда ведут к одному и тому же месту назначения.
+///Экспедиция
+Bone Shakers|Костотрясы
+Perk_Camo_Name|Камуфляж
+Perk_Camo_Desc|Удерживай ОСОБУЮ кнопку, чтобы скрыться от хищников.
+Perk_LongWarp_Name|Перманентные порталы
+Perk_LongWarp_Desc|Сформированные порталы остаются навсегда, а не исчезают после 5 циклов.<LINE>Эксклюзив для Cозерцателя.
+Perk_PoisonSpear_Name|Ядовитое копьё
+Perk_PoisonSpear_Desc|Начни экспедицию с ядовитым копьём.
+Perk_Boomerang_Name|Бумеранг
+Perk_Boomerang_Desc|Все камни с некоторым шансом могут быть заменены на бумеранг.
+Burden_Rot_Name|ГНИЛЬ
+Burden_Rot_Desc|Все регионы изначально полностью охвачены и заражены гнилью.<LINE>Это сделано только для усложнения задачи.
+Challenge_Rot_Name|Заражение гнилью
+Challenge_Rot_Desc|Зарази <score_target> регионов разумной гнилью [<current_score>/<score_target>]
+Challenge_ST_Name|Волчок
+Challenge_ST_Desc|Посети Волчка в регионе <region>
+Challenge_Warp_Name|Порталов за цикл
+Challenge_Warp_Desc|Создай <target> порталов за один цикл [<current>/<target>]
+challenge_Prince_Name|Доставка Принцу
+challenge_Prince_Desc|Доставь <item> Принцу
+Mission_Rot|Гниющий Мир
