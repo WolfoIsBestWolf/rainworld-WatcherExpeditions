@@ -16,7 +16,7 @@ namespace WatcherExpeditions
 
         public override void UpdateDescription()
         {
-            this.description = ChallengeTools.IGT.Translate("Infect <score_target> regions with sentient rot [<current_score>/<score_target>]").Replace("<score_target>", ValueConverter.ConvertToString<int>(this.target)).Replace("<current_score>", ValueConverter.ConvertToString<int>(this.rotted));
+            this.description = T.IGT.Translate("Challenge_Rot_Desc").Replace("<score_target>", ValueConverter.ConvertToString<int>(this.target)).Replace("<current_score>", ValueConverter.ConvertToString<int>(this.rotted));
             base.UpdateDescription();
 
             //Debug.Log("RotSpreading_Challenge UpdateDescription");
@@ -78,6 +78,7 @@ namespace WatcherExpeditions
 
         public override string ChallengeName()
         {
+            return T.Translate("Challenge_Rot_Name");
             return ChallengeTools.IGT.Translate("Rot Spreading");
         }
 

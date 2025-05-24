@@ -1,0 +1,7 @@
+{
+    "key" : "we_mission_rot",
+    "type" : "expedition",
+    "color" : "05ebbd",
+    "conditions" : ["mis-WEM_rot"],
+    "reward" : ["mus-wr9","mus-wr10", "mus-wr11"],
+}

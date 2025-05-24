@@ -75,7 +75,7 @@ namespace WatcherExpeditions
                 {
                     return;
                 }
-                if (self.room.game.IsArenaSession)
+                if (self.room.game != null && self.room.game.IsArenaSession)
                 {
                     return;
                 }     
@@ -106,7 +106,7 @@ namespace WatcherExpeditions
                     }
                 }
             }
-            else if (self.room.game.IsArenaSession && self.SlugCatClass == WatcherEnums.SlugcatStatsName.Watcher)
+            else if (self.room != null && self.room.game.IsArenaSession && self.SlugCatClass == WatcherEnums.SlugcatStatsName.Watcher)
             {
                 return 3f;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Security;
 using System.Security.Permissions;
 
@@ -12,3 +13,22 @@ using System.Security.Permissions;
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 #pragma warning restore CS0618 // Type or member is obsolete
 [module: UnverifiableCode]
+
+public class T
+{
+    public static string Translate(string s)
+    {
+        return RWCustom.Custom.rainWorld.inGameTranslator.Translate(s);
+    }
+    public static string TranslateLineBreak(string s)
+    {
+        return RWCustom.Custom.rainWorld.inGameTranslator.Translate(s).Replace("<LINE>", Environment.NewLine);
+    }
+    public static InGameTranslator IGT
+    {
+        get
+        {
+            return RWCustom.Custom.rainWorld.inGameTranslator;
+        }
+    }
+}

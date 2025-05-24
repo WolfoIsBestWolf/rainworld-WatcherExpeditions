@@ -54,6 +54,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.Translate("Perk_Camo_Desc");
                 //return "Hold the SPECIAL button to camouflage from predators";
                 return "Gain the ability to camouflage for a short time from predators by holding the SPECIAL button.";
             }
@@ -62,6 +63,7 @@ namespace WatcherExpeditions
         {
             get
             {
+                return T.Translate("Perk_Camo_Name");
                 return "Camouflage";
             }
         }

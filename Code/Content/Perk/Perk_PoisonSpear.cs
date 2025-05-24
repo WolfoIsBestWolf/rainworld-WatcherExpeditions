@@ -52,6 +52,7 @@ namespace ExpeditionExtraConfig
         {
             get
             {
+                return T.Translate("Perk_PoisonSpear_Desc");
                 return "Start the expedition with a poison tipped Spear";
             }
         }
@@ -59,6 +60,7 @@ namespace ExpeditionExtraConfig
         {
             get
             {
+                return T.Translate("Perk_PoisonSpear_Name");
                 return "Poison Spear";
             }
         }

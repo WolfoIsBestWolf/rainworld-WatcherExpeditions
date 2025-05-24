@@ -1,0 +1,7 @@
+{
+    "key" : "we_generic3",
+    "type" : "milestone",
+    "color" : "a3a3a3",
+    "conditions" : ["swins-Watcher-3"],
+    "reward" : ["mus-w2"],
+}

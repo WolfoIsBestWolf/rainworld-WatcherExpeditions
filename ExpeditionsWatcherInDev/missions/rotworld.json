@@ -1,0 +1,12 @@
+{
+    "key" : "WEM_rot",
+    "name" : "Mission_Rot",
+    "slugcat" : "Watcher",
+    "challenges" : ["HuntChallenge~Rattler><5><0><0><0><0", 	   
+					"AchievementChallenge~Friend><0><0><0",   
+					"HuntChallenge~DrillCrab><1><0><0><0><0",
+					"ST_EchoChallenge~WARD><0><0><0",
+				   ],
+    "requirements" : ["bur-watcher_rot"],
+    "den" : "WARD_S13"
+}
