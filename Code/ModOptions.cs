@@ -15,12 +15,12 @@ namespace WatcherExpeditions
 
 
         public static Configurable<bool> cfgCustomColorFix = instance.config.Bind("cfgCustomColorFix", true,
-         new ConfigurableInfo("Watcher has his body color overritten with the areas shade of black, ignoring Custom Colors, Jolly Custom Colors and his default set dark blue. \nThis makes it so Remix Custom and Jolly Custom colors work.", null, "", new object[]
+         new ConfigurableInfo("Watcher has his body color overritten with the areas shade of black, ignoring Custom Colors, Jolly Custom Colors and his default set dark blue. This makes it so Remix Custom and Jolly Custom colors work.", null, "", new object[]
          {
               "Fix Custom Color"
          }));
         public static Configurable<bool> cfgSandbox = instance.config.Bind("cfgSandbox", true,
-                 new ConfigurableInfo("Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement.\nRoz Lizards aren't really possible since they aren't a unique creature.", null, "", new object[]
+                 new ConfigurableInfo("Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement. Roz Lizards aren't really possible since they aren't a unique creature.", null, "", new object[]
                  {
               "Watcher Sandbox"
                  }));
@@ -91,7 +91,7 @@ namespace WatcherExpeditions
                 "Force unlock"
             }));
         public static Configurable<bool> cfgWatcher_KarmaFlower = instance.config.Bind("cfgWatcher_KarmaFlower", true,
-           new ConfigurableInfo("Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability.\nIf disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.", null, "", new object[]
+           new ConfigurableInfo("Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability. If disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.", null, "", new object[]
         {
                 "Karma Flowers all regions"
         }));
@@ -134,7 +134,7 @@ namespace WatcherExpeditions
                 "Hunt - Sand Worms"
             }));
         public static Configurable<bool> cfgHunt_BoxWorm = instance.config.Bind("cfgHunt_BoxWorm", false,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Box Worm. Box Worms can easily trap you, need to be activated before being killable, and aren't much fun to fight.\nUninhabitated Box Worms are unkillable.", null, "", new object[]
+            new ConfigurableInfo("Allow Hunting challenges to pick : Box Worm. Box Worms can easily trap you, need to be activated before being killable, and aren't much fun to fight. Uninhabitated Box Worms are unkillable.", null, "", new object[]
             {
                 "Hunt - Box Worm"
             }));
@@ -158,7 +158,7 @@ namespace WatcherExpeditions
 			base.Initialize();
 			this.Tabs = new OpTab[]
 			{
-                new OpTab(this, "Watcher"),
+                new OpTab(this, Translate("Watcher")),
                 new OpTab(this, "~~~")
             };
 			this.AddCheckbox();
@@ -400,10 +400,10 @@ namespace WatcherExpeditions
 };
             var names = new string[]
              {
-                "Ripple",
-                "Rot",
-                "General",
-                "Hunts",
+                Translate("Ripple"),
+                Translate("Rot"),
+                Translate("General"),
+                Translate("Hunts"),
              };
             instance.PopulateWithConfigs(0, array, names, colors, 2);
 
@@ -418,8 +418,8 @@ namespace WatcherExpeditions
 
 
 
-            OpLabel TitleLabelW = new OpLabel(new Vector2(150f, 520), new Vector2(300f, 30f), "~Watcher Expedition Mod~", FLabelAlignment.Center, true, null);
-            TitleLabelW.description = "Unofficial Watcher Expeditions.";
+            OpLabel TitleLabelW = new OpLabel(new Vector2(150f, 520), new Vector2(300f, 30f), Translate("~Watcher Expedition Mod~"), FLabelAlignment.Center, true, null);
+            TitleLabelW.description = Translate("Unofficial Watcher Expeditions.");
             TitleLabelW.color = Watcher;
  
             this.Tabs[0].AddItems(new UIelement[]
