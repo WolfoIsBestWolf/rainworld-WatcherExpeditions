@@ -15,10 +15,11 @@ using System;
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.4.0")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.1.1")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
+        public static bool initialized_late = false;
         public static bool slugbase = false;
 
         public void OnEnable()
@@ -26,10 +27,18 @@ namespace WatcherExpeditions
             On.RainWorld.OnModsInit += RainWorld_OnModsInit;
             On.RainWorld.PostModsInit += RainWorld_PostModsInit;
         }
-
+        public void OnDisable()
+        {
+           
+        }
         private void RainWorld_PostModsInit(On.RainWorld.orig_PostModsInit orig, RainWorld self)
         {
-            orig(self);
+            orig(self); 
+            if (initialized_late)
+            {
+                return;
+            }
+            initialized_late = true;
             WLog.Start();
             SandboxStuff.Start();
         }
@@ -76,7 +85,7 @@ namespace WatcherExpeditions
             Futile.atlasManager.LoadAtlas("atlases/watcher_expedition");
         }
 
-    
+       
 
         private static void FixCustomColorsNotWorking(ILContext il)
         {
@@ -121,12 +130,13 @@ namespace WatcherExpeditions
         public static void KarmaFlowerForWatchers(ILContext il)
         {
             ILCursor c = new(il);
-            if (c.TryGotoNext(MoveType.Before,
-                x => x.MatchLdstr("Preventing natural KarmaFlower spawn")))
-            {
-                c.TryGotoPrev(MoveType.After,
-                x => x.MatchLdsfld("ModManager", "Expedition"));
 
+            bool one = c.TryGotoNext(MoveType.Before,
+                x => x.MatchLdstr("Preventing natural KarmaFlower spawn"));
+
+            if (one && c.TryGotoPrev(MoveType.After,
+                x => x.MatchLdsfld("ModManager", "Expedition")))
+            {    
                 c.Emit(OpCodes.Ldarg_0);
                 c.EmitDelegate<Func<bool, Room, bool>>((karma, room) =>
                 {
@@ -144,23 +154,11 @@ namespace WatcherExpeditions
                     }
                     return karma;
                 }); 
-                /*c.EmitDelegate<System.Func<bool, bool>>((karma) =>
-                {
-                    //Maybe if WORA just always allow, how would we get that tho
-                    if (WConfig.cfgWatcher_KarmaFlower.Value && ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
-                    {
-                        return false;
-                    }
-                   
-                    return karma;
-                });*/
-
-                //c.Next.OpCode = OpCodes.Brtrue_S;
-                //UnityEngine.Debug.Log("WatcherExpeditions: Karma Flower Hook Succeeded");
             }
             else
             {
-                UnityEngine.Debug.Log("WatcherExpeditions: Karma Flower Hook Failed");
+                Debug.Log("WatcherExpeditions: Karma Flower Hook Failed");
+                Debug.Log(c);
             }
         }
 

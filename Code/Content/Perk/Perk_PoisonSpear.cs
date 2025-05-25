@@ -7,9 +7,7 @@ using JetBrains.Annotations;
 using RWCustom;
 using UnityEngine;
 
-
- 
-namespace ExpeditionExtraConfig
+namespace WatcherExpeditions
 {
     public class Perk_PoisonSpear : Modding.Expedition.CustomPerk
     {

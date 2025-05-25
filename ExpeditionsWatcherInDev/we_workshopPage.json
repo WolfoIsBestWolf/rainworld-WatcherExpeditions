@@ -117,8 +117,12 @@ Alternatively here are the room codes I chose.
 [/table]
 
 
-[b][h1]Known Issues:
-[/h1][/b]
-Camo Perk might be a bit jank looking on some character. (Gourmand is weirdly square if you have it on)
+[b][h1]Special Thanks:
+[/h1][/b]_Wolf_ (on Github) — Russian translation — Русский перевод
 
-If you have issues, tell me what is in "Rain World/exception.log" or contact me on Discord or GitHub.
+
+[b][h1]Known Issues:
+[/h1][/b]Camo Perk might be a bit jank looking on some character. (Gourmand is weirdly square if you have it on)
+If disabling mod, and your "Expedition last selected character" is Watcher. The game tries to default to Monk. Sometimes this can fail, then, select a different a character first.
+ 
+ 

@@ -29,8 +29,6 @@ namespace WatcherExpeditions
         }
         private static SlugcatStats.Name AllowWatcherJollyExpedition(On.JollyCoop.JollyCustom.orig_SlugClassMenu orig, int playerNumber, SlugcatStats.Name fallBack)
         {
-            Debug.Log(Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass);
-            Debug.Log(orig(playerNumber, fallBack));
             if (Custom.rainWorld.ExpeditionMode)
             {
                 SlugcatStats.Name name = Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass;
@@ -39,7 +37,6 @@ namespace WatcherExpeditions
                     return WatcherEnums.SlugcatStatsName.Watcher;
                 }
             }
-
             return orig(playerNumber, fallBack);
         }
         private static void MenuScene_BuildVoidBathScene(On.Menu.MenuScene.orig_BuildVoidBathScene orig, MenuScene self, int index)
@@ -106,7 +103,7 @@ namespace WatcherExpeditions
             return orig(manager, slugcat);
         }
 
-        private static void MoveSlugsAndJukebox(MonoMod.Cil.ILContext il)
+        private static void MoveSlugsAndJukebox(ILContext il)
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.Before,
@@ -132,13 +129,12 @@ namespace WatcherExpeditions
                         return exped - 55f;
                     }
                     return exped;
-                    return exped - 110f;
                 });
             }
             if (c.TryGotoNext(MoveType.After,
-             x => x.MatchLdcR4(110f)))
+            x => x.MatchLdcR4(110f),
+            x => x.MatchLdloc(3)))
             {
-                c.Index++;
                 c.EmitDelegate<Func<int, int>>((exped) =>
                 {
                     if (!WatcherExpeditions.slugbase && exped == 8)
@@ -149,9 +145,9 @@ namespace WatcherExpeditions
                 });
             }
             if (c.TryGotoNext(MoveType.After,
-             x => x.MatchLdcR4(110f)))
+            x => x.MatchLdcR4(110f),
+            x => x.MatchLdloc(3)))
             {
-                c.Index++;
                 c.EmitDelegate<Func<int, int>>((exped) =>
                 {
                     if (!WatcherExpeditions.slugbase && exped == 8)
@@ -199,31 +195,7 @@ namespace WatcherExpeditions
                 });
             }
             return;
-            /*if (c.TryGotoNext(MoveType.After,
-             x => x.MatchLdcI4(7)))
-            {
-                c.EmitDelegate<Func<int, int>>((exped) =>
-                {
-                    if (WConfig.cfgWatcher_Expedition.Value)
-                    {
-                        return exped+1;
-                    }
-                    return exped;
-                });
-            }
-
-            if (c.TryGotoNext(MoveType.After,
-             x => x.MatchLdcR4(415)))
-            {
-                c.EmitDelegate<Func<float, float>>((exped) =>
-                {
-                    if (WConfig.cfgWatcher_Expedition.Value)
-                    {
-                        return exped - 55f;
-                    }
-                    return exped;
-                });
-            }*/
+ 
         }
 
         private static List<SlugcatStats.Name> ExpeditionData_GetPlayableCharacters(On.Expedition.ExpeditionData.orig_GetPlayableCharacters orig)
@@ -241,8 +213,6 @@ namespace WatcherExpeditions
             orig(self, num);
             if (ModManager.Watcher && ExpeditionGame.playableCharacters[num] == WatcherEnums.SlugcatStatsName.Watcher)
             {
-                //self.slugcatScene = WatcherEnums.MenuSceneID.MainMenu_Watcher;
-                //self.slugcatScene = WatcherEnums.MenuSceneID.Ending_SpinningTop2;
                 self.slugcatScene = WatcherEnums.MenuSceneID.Ending_VoidBath2;
                 self.slugcatName.text = self.menu.Translate("THE WATCHER");
                 self.slugcatDescription.text = T.TranslateLineBreak("Watcher_Ex_Description");

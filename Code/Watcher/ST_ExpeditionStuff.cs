@@ -18,40 +18,28 @@ namespace WatcherExpeditions
         public static void Start()
         {
             On.Watcher.SpinningTop.StartConversation += DontRepeatConversationsExpedition;
-
-            On.Watcher.SpinningTop.RaiseRippleLevel += DontRaiseRippleLevelNormaly;
-            //On.Watcher.SpinningTop.NextMinMaxRippleLevel += SpinningTop_NextMinMaxRippleLevel;
+ 
+            On.Watcher.SpinningTop.NextMinMaxRippleLevel += ReturnCurrentRipple;
+ 
         }
 
-
-        private Vector2 SpinningTop_NextMinMaxRippleLevel(On.Watcher.SpinningTop.orig_NextMinMaxRippleLevel orig, Room room)
+        private static Vector2 ReturnCurrentRipple(On.Watcher.SpinningTop.orig_NextMinMaxRippleLevel orig, Room room)
         {
             if (Custom.rainWorld.ExpeditionMode)
             {
-                float num = Mathf.Min(5f, (room.game.session as StoryGameSession).saveState.deathPersistentSaveData.maximumRippleLevel + 0.5f);
-                float x = Mathf.Max(1f, num - (float)((WConfig.cfgRippleMaxDifference.Value - 1) / 2f));
-
+                if (WConfig.cfgWatcher_RippleChange.Value == false)
+                {
+                    Vector2 vec2 = new Vector2(1,1);
+                    vec2.x = (room.game.session as StoryGameSession).saveState.deathPersistentSaveData.minimumRippleLevel;
+                    vec2.y = (room.game.session as StoryGameSession).saveState.deathPersistentSaveData.maximumRippleLevel;
+                    return vec2;
+                    //Easier this way, still does all the camera stuff
+                }
             }
-
             return orig(room);
         }
 
-
-        public static void DontRaiseRippleLevelNormaly(On.Watcher.SpinningTop.orig_RaiseRippleLevel orig, Room room)
-        {
-            if (Custom.rainWorld.ExpeditionMode)
-            {
-                if (!WConfig.cfgWatcher_RippleChange.Value)
-                {
-                    //Still max ripple
-                    Vector2 vector = Watcher.SpinningTop.NextMinMaxRippleLevel(room);
-                    (room.game.session as StoryGameSession).saveState.deathPersistentSaveData.rippleLevel = vector.y;
-                    return;
-                }
-            }
-            orig(room);
-        }
-
+ 
         private static void DontRepeatConversationsExpedition(On.Watcher.SpinningTop.orig_StartConversation orig, SpinningTop self)
         {
             orig(self);

@@ -9,6 +9,7 @@ using UnityEngine;
 using Watcher;
 using System.Collections.Generic;
 using Mono.Cecil.Cil;
+using Unity.Mathematics;
 
 namespace WatcherExpeditions
 {
@@ -55,8 +56,6 @@ namespace WatcherExpeditions
             get
             {
                 return T.Translate("Perk_Camo_Desc");
-                //return "Hold the SPECIAL button to camouflage from predators";
-                return "Gain the ability to camouflage for a short time from predators by holding the SPECIAL button.";
             }
         }
         public override string DisplayName
@@ -64,7 +63,6 @@ namespace WatcherExpeditions
             get
             {
                 return T.Translate("Perk_Camo_Name");
-                return "Camouflage";
             }
         }
         public override string Group
@@ -93,17 +91,17 @@ namespace WatcherExpeditions
             ILHook hook2 = new ILHook(typeof(Player).GetProperty("VisibilityBonus", BindingFlags.Instance | BindingFlags.Public).GetGetMethod(), WatcherPerkVisiblity);
  
             On.Player.ctor += SetRipple;
-            IL.Player.WatcherUpdate += CamoPerk_IL;
+            IL.Player.WatcherUpdate += PretendIsWatcher;
             //Camo Hud not automatic
             //Invis not automatic
-            IL.PlayerGraphics.InitiateSprites += PlayerGraphics_InitiateSprites;
-            IL.PlayerGraphics.DrawSprites += PlayerGraphics_DrawSprites;
-            IL.HUD.HUD.InitSinglePlayerHud += HUD_InitSinglePlayerHud;
+            IL.PlayerGraphics.InitiateSprites += AddInvisibilityOverlaySprite;
+            IL.PlayerGraphics.DrawSprites += InvisiblityForNonWatchers;
+            IL.HUD.HUD.InitSinglePlayerHud += AddCamoMeter;
         }
 
  
 
-        private void HUD_InitSinglePlayerHud(ILContext il)
+        private void AddCamoMeter(ILContext il)
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.After,
@@ -121,12 +119,13 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL6");
+                Debug.Log("WE CamoPerk Fail : HUD_InitSinglePlayerHud");
             }
         }
 
-        private void PlayerGraphics_InitiateSprites(ILContext il)
+        private void AddInvisibilityOverlaySprite(ILContext il)
         {
+            
             ILCursor c = new(il);
             c.TryGotoNext(MoveType.After,
             x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher"));
@@ -144,6 +143,13 @@ namespace WatcherExpeditions
                     return self;
                 });
             }
+            else
+            {
+                Debug.Log(c);
+                Debug.Log("WE CamoPerk Fail : IL.PlayerGraphics.InitiateSprites1");
+                return;
+            }
+
             if (c.TryGotoNext(MoveType.After,
                 x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher"),
                 x => x.MatchCall("ExtEnum`1<SlugcatStats/Name>", "op_Equality")))
@@ -160,7 +166,9 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL7");
+                Debug.Log(c);
+                Debug.LogWarning("WE CamoPerk Fail : IL.PlayerGraphics.InitiateSprites2");
+                return;
             }
 
             if (c.TryGotoNext(MoveType.After,
@@ -180,44 +188,27 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL6");
+                Debug.Log(c);
+                Debug.LogWarning("WE CamoPerk Fail : IL.PlayerGraphics.InitiateSprites3");
+                return;
             }
 
-            
+
         }
 
-        private void PlayerGraphics_DrawSprites(ILContext il)
+        private void InvisiblityForNonWatchers(ILContext il)
         {
             ILCursor c = new(il);
 
-            c.TryGotoNext(MoveType.After,
+            bool bool1 = c.TryGotoNext(MoveType.After,
             x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher")); //Void sea??
-            c.TryGotoNext(MoveType.After,
+            bool bool2 = c.TryGotoNext(MoveType.After,
             x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher")); //Arena?
-
-            if (c.TryGotoNext(MoveType.After,
+            bool bool3 = c.TryGotoNext(MoveType.After,
                 x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher"), //Camo progress
-                x => x.MatchCall("ExtEnum`1<SlugcatStats/Name>", "op_Equality")))
-            {
-                c.EmitDelegate<Func<bool, bool>>((self) =>
-                {
-                    if (CamoPerk)
-                    {
-                        return true;
-                    }
-                    return self;
-                });
-            }
-            else
-            {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL51");
-            }
-            c.TryGotoNext(MoveType.After,
-            x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher")); //The black thing
+                x => x.MatchCall("ExtEnum`1<SlugcatStats/Name>", "op_Equality"));
 
-            if (c.TryGotoNext(MoveType.After,
-                x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher"), //Camoprogress 2
-                x => x.MatchCall("ExtEnum`1<SlugcatStats/Name>", "op_Equality")))
+            if (bool1&&bool2&& bool3)
             {
                 c.EmitDelegate<Func<bool, bool>>((self) =>
                 {
@@ -230,7 +221,29 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL51");
+                Debug.Log("WE CamoPerk Fail IL.PlayerGraphics.DrawSprites1"+ bool1 +bool2 +bool3);
+                return;
+            }
+            bool bool4 = c.TryGotoNext(MoveType.After,
+            x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher")); //The black thing
+            bool bool5 = c.TryGotoNext(MoveType.After,
+                x => x.MatchLdsfld("Watcher.WatcherEnums/SlugcatStatsName", "Watcher"), //Camoprogress 2
+                x => x.MatchCall("ExtEnum`1<SlugcatStats/Name>", "op_Equality"));
+            if (bool4 && bool5)
+            {
+                c.EmitDelegate<Func<bool, bool>>((self) =>
+                {
+                    if (CamoPerk)
+                    {
+                        return true;
+                    }
+                    return self;
+                });
+            }
+            else
+            {
+                Debug.Log("WE CamoPerk Fail IL.PlayerGraphics.DrawSprites2" + bool4+ bool5);
+                return;
             }
 
             if (c.TryGotoNext(MoveType.After,
@@ -248,7 +261,8 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL51");
+                Debug.Log("WE CamoPerk Fail IL.PlayerGraphics.DrawSprites3");
+                return;
             }
             for (int i = 0; i < 6; i++)
             {
@@ -267,7 +281,8 @@ namespace WatcherExpeditions
                 }
                 else
                 {
-                    Debug.Log("WatcherExpeditions: fail CamoPerk_IL6"+i);
+                    Debug.Log("WE CamoPerk Fail IL.PlayerGraphics.DrawSprites4" + i);
+                    return;
                 }
             }
             
@@ -338,7 +353,7 @@ namespace WatcherExpeditions
             }
         }
 
-        private void CamoPerk_IL(ILContext il)
+        private void PretendIsWatcher(ILContext il)
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.After,
@@ -353,7 +368,8 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL1");
+                Debug.Log(c);
+                Debug.Log("WatcherExpeditions: fail CamoPerk_IL1"); return;
             }
             if (c.TryGotoNext(MoveType.After,
                 x => x.MatchCall("Player", "get_rippleLevel"),
@@ -371,7 +387,8 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("WatcherExpeditions: fail CamoPerk_IL2");
+                Debug.Log(c);
+                Debug.Log("WatcherExpeditions: fail CamoPerk_IL2"); return;
             }
            /* if (c.TryGotoNext(MoveType.After,
                x => x.MatchCall("Player", "get_rippleLevel"),

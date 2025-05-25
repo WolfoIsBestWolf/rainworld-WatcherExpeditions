@@ -19,11 +19,12 @@ namespace WatcherExpeditions
     {
         public static void Start()
         {
-            On.AbstractSpaceVisualizer.Visibility += AbstractSpaceVisualizer_Visibility;
             if (!WConfig.cfgDebugInfo.Value)
             {
                 return;
             }
+            On.AbstractSpaceVisualizer.Visibility += AbstractSpaceVisualizer_Visibility;
+            
             On.World.SpawnGhost += DumpOnce;
             On.World.SpawnGhost += DumpMultiple;
             On.Expedition.ChallengeTools.ParseCreatureSpawns += ChallengeTools_ParseCreatureSpawns;       
@@ -134,9 +135,10 @@ namespace WatcherExpeditions
         {
             ILCursor c = new(il);
             c.TryGotoNext(MoveType.Before,
-             x => x.MatchLdsfld("PlacedObject/Type", "DataPearl"));
-            
-            c.Index--;  
+            x => x.MatchLdfld("PlacedObject", "type"),
+            x => x.MatchLdsfld("PlacedObject/Type", "DataPearl")
+            );
+
             c.EmitDelegate<Func<PlacedObject, PlacedObject>> ((placedObject) =>
             {
                 //ELog.Log(placedObject.type);
@@ -163,7 +165,7 @@ namespace WatcherExpeditions
             
         }
 
-        private static void TryToSaveLikeWarpPointMap(On.MiscWorldSaveData.orig_ctor orig, MiscWorldSaveData self, SlugcatStats.Name saveStateNumber)
+       /* private static void TryToSaveLikeWarpPointMap(On.MiscWorldSaveData.orig_ctor orig, MiscWorldSaveData self, SlugcatStats.Name saveStateNumber)
         {
             bool WatcherThingy = Custom.rainWorld.ExpeditionMode && WConfig.cfgWatcher_WarpMap.Value;
             if (WatcherThingy)
@@ -171,7 +173,7 @@ namespace WatcherExpeditions
  
             }
             orig(self, saveStateNumber);
-        }
+        }*/
 
         private static void DumpOnce(On.World.orig_SpawnGhost orig, World self)
         {

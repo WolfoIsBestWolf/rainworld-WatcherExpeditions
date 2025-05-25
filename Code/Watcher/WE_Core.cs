@@ -93,11 +93,10 @@ namespace WatcherExpeditions
                     }
                     return karmaSymbol;
                 });
-               Debug.Log(": EvilRippleSymbolWhenAboutToDie");
             }
             else
             {
-                Debug.Log(": EvilRippleSymbolWhenAboutToDie fail");
+                Debug.Log("WatcherExpedition: EvilRippleSymbolWhenAboutToDie fail");
             }
         }
 
@@ -135,7 +134,6 @@ namespace WatcherExpeditions
             if (c.TryGotoNext(MoveType.After,
                 x => x.MatchLdfld("Player/InputPackage", "spec")))
             {
-                //c.Index += 1;
                 c.Emit(OpCodes.Ldarg_0);
                 c.EmitDelegate<System.Func<bool, Player, bool>>((input, slug) =>
                 {
@@ -145,11 +143,10 @@ namespace WatcherExpeditions
                     }
                     return input;
                 });
-                UnityEngine.Debug.Log(": WatcherExplosiveJumpFix");
             }
             else
             {
-                UnityEngine.Debug.Log(": WatcherExplosiveJumpFix fail");
+               Debug.Log("WatcherExpedition: WatcherExplosiveJumpFix fail");
             }
         }
 
@@ -202,13 +199,12 @@ namespace WatcherExpeditions
         {
             ILCursor c = new(il);
             c.TryGotoNext(MoveType.After,
-                x => x.MatchCallOrCallvirt("System.Collections.Generic.List`1<System.String>", "RemoveAll"));
+            x => x.MatchCallOrCallvirt("System.Collections.Generic.List`1<System.String>", "RemoveAll"));
 
             if (c.TryGotoPrev(MoveType.After,
                 x => x.MatchLdloc(2)))
             {
-                //c.Index += 1;
-                c.EmitDelegate< System.Func<List<string>, List<string>> >((list) =>
+                c.EmitDelegate<Func<List<string>, List<string>> >((list) =>
                 {
                     if (list.Contains("WARB"))
                     {
@@ -223,11 +219,10 @@ namespace WatcherExpeditions
                     }
                     return list;
                 });
-                UnityEngine.Debug.Log("wa: AddRotRegionsForCreatureSpawns");
             }
             else
             {
-                UnityEngine.Debug.Log("wa: AddRotRegionsForCreatureSpawns");
+               Debug.Log("WatcherExpedition: AddRotRegionsForCreatureSpawns");
             }
         }
 

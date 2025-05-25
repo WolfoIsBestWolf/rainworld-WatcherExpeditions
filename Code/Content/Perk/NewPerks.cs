@@ -9,10 +9,8 @@ using UnityEngine;
 using System.IO;
 using Modding.Expedition;
 using Menu;
-using MonoMod.Cil;
 using Mono.Cecil.Cil;
-using ExpeditionExtraConfig;
-
+ 
 namespace WatcherExpeditions
 {
     public class NewPerks

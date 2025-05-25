@@ -1,7 +1,7 @@
 {
 	"id": "WatcherExpeditions",
 	"name": "Watcher Expeditions",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"authors": "Wolfo",
 	"description": "Adds Watcher to the Expedition game mode alongside \nsome Perks, a Mission and a new challenge type exclusive to him.\n\nAdds Watcher to Arena game modes.\nAdds Watcher Creatures to Arena game modes.",
 	"requirements": ["expedition", "watcher"],

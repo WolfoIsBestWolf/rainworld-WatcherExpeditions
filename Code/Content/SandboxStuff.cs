@@ -138,7 +138,7 @@ namespace WatcherExpeditions
             }
             else
             {
-                Debug.Log("SandboxGameSession_SpawnEntity Hook Failed");
+                Debug.LogWarning("SandboxGameSession_SpawnEntity Hook Failed");
             }
         }
 

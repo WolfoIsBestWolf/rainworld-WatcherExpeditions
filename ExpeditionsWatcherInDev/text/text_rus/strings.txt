@@ -1,0 +1,86 @@
+///Ремикс
+WatcherExpeditions_Name|Экспедиции для Созерцателя
+WatcherExpeditions_Desc|Добавляет Созерцателя в игровой режим Экспедиции.
+
+///Меню
+Watcher_Ex_Description|Прокладывай новые пути и ищи в Ряби новую цель.
+
+///Рябь
+Ripple|Рябь
+WEConfig_Name_RippleStart|Начальная Рябь
+WEConfig_Desc_RippleStart|Начальная величина Ряби. Замена кармы.
+WEConfig_Name_RippleMax|Начальная макс. Рябь
+WEConfig_Desc_RippleMax|Начальная величина максимальной Ряби. Тебе нужна 3-я, чтобы открывать Порталы. 5-я для парения. 8-я для телепортации во все регионы. 9-я для входа к Искусителю.
+WEConfig_Name_RippleMin|Начальная мин. Рябь
+WEConfig_Desc_RippleMin|Начальная величина минимальной Ряби. Если ты не знал, твоя минимальная Рябь увеличивается по мере того, как ты посещаешь Волчка.
+WEConfig_Name_KarmaFlower|Цветы Кармы во всех регионах
+WEConfig_Desc_KarmaFlower|Разрешить Цветам Кармы появляться в каждом регионе во время экспедиций. Если отключено, то они всё равно будут появляться в Внешнем кольце, Разбитой террасе, Искусителе и заражённых регионах.
+///Общее
+General|Общее
+WEConfig_Name_Unlock|Принудительно разблокировать
+WEConfig_Desc_Unlock|Разблокировать экспедиции независимо от завершения кампании Созерцателя.
+WEConfig_Name_Music|Музыка
+WEConfig_Desc_Music|Добавить саундтреки Созерцателя в музыкальный автомат. Разблокировка не требуется.
+WEConfig_Name_Sandbox|Песочница
+WEConfig_Desc_Sandbox|Добавить существ и предметы Созерцателя в Песочницу и Арену. Разблокировка не требуется.
+WEConfig_Name_ColorFix|Исправить Кастомный Цвет
+WEConfig_Desc_ColorFix|Цвет тела Созерцателя был заменён на чёрный. Благодаря этому цвета Ремикса и Jolly Co-op работают.
+WEConfig_Name_VanillaPassage|Переходы
+WEConfig_Desc_VanillaPassage|Включить переходы на черном экране в кампании Созерцателя. Черные экраны, поскольку для новых областей нет рисунков.
+WEConfig_Name_STSpeak|Волчок
+WEConfig_Desc_STSpeak|Разрешить Волчку говорить. Он будет выбирать диалоги по порядку.
+///Rot
+Rot|Гниль
+WEConfig_Name_Challenge_Rot|Испытания Заражение гнилью
+WEConfig_Desc_Challenge_Rot|Испытания, в которых тебе нужно заразить регионы, чтобы победить. 5 с обычной сложностью, диапазон 3-9.
+WEConfig_Name_RotWorld_Shelter|Измерение Гнили — Убежища
+WEConfig_Desc_RotWorld_Shelter|Экспедиции можно будет начинать в регионах Гнили. Тебе нужно будет найти выход, который затем телепортирует тебя в случайный регион. Никогда за пределы Внешнего кольца.
+WEConfig_Name_RotWorld_Hunt|Измерение Гнили — Охота
+WEConfig_Desc_RotWorld_Hunt|Миссии охоты учитывают врагов в регионах Гнили, таких как Отцы-долгоноги и Красные сколопендры. Поскольку у тебя нет выбора, в какой регион Гнили тебя телепортирует, эта настройка не рекомендуется.
+WEConfig_Name_Hunt_BoneShaker|Охота — Костотряс
+WEConfig_Desc_Hunt_BoneShaker|Разрешить выбирать охотничьи задания: Костотряс. Они появляются только в местах гниения, и их можно убить, сбив с ног.
+///Hunts
+Hunts|Охота
+WEConfig_Name_Hunt_Barnacle|Охота — Усоноги
+WEConfig_Desc_Hunt_Barnacle|Разрешить выбирать охотничьи задания: Усоноги. Начиная с версии 1.10.2 их можно очищать с помощью улиток.
+WEConfig_Name_Hunt_BigMoth|Охота — Большая моль
+WEConfig_Desc_Hunt_BigMoth|Разрешить выбирать охотничьи задания: Большая моль. В версии 1.10.2 они кажутся более боеспособными и способными к побегу.
+WEConfig_Name_Hunt_SandWorm|Охота — Песчаный червь
+WEConfig_Desc_Hunt_SandWorm|Разрешить выбирать охотничьи задания: Песчаный червь. Похож на морского монстра, но оглушает, не давая сбежать, если схватит, и может прятаться.
+WEConfig_Name_Hunt_BoxWorm|Охота — Коробчатый червь
+WEConfig_Desc_Hunt_BoxWorm|Разрешить выбирать охотничьи задания: Коробчатый червь. Коробчатые черви могут легко заманить тебя в ловушку, их нужно активировать, прежде чем можно будет их убить. Необитаемые коробчатые черви неуязвимы.
+///~~~
+Info Dump|Выгрузить информацию
+Dump a bunch of info|Выгрузить кучу информации.
+///???
+WEConfig_Desc_ChangeRipple|Мин/макс Рябь отголоска
+WEConfig_Desc_ChangeRipple|Разрешить Волчку увеличивать максимальную и минимальную величину Ряби. По-прежнему устанавливает максимально возможную Рябь. Отголосков нет в стандартной Экспедиции.
+///Max Ripple difference|Макс. разница в Ряби
+///Your max and minimum Ripple will be at most this far apart. |Твоя максимальная и минимальная Рябь будет находиться не более чем на таком расстоянии друг от друга.
+///Move Jukebox button|Переместить кнопку проигрывателя
+///Move the Jukebox button to better fit the Watcher next to the other slugcats.|Переместить кнопку проигрывателя, чтобы Созерцатель поместился рядом с другими слизнекотами.
+///Shattered Terrance|Разбитая терраса
+///Expeditions can start in Shattered Terrance and Hunt challenges will count creatures in it.|Экспедиции могут начинаться в Разбитой террасе и охотничьи задания будут подсчитывать количество существ в ней.
+///Carry over Warp Map progress|Перенос прогресса деформируемой карты
+///Carry over discovered Warps that always have the same destination.|Перенос обнаруженных перекосов, которые всегда ведут к одному и тому же месту назначения.
+///Экспедиция
+Bone Shakers|Костотрясы
+Perk_Camo_Name|Камуфляж
+Perk_Camo_Desc|Удерживай ОСОБУЮ кнопку, чтобы скрыться от хищников.
+Perk_LongWarp_Name|Перманентные порталы
+Perk_LongWarp_Desc|Сформированные порталы остаются навсегда, а не исчезают после 5 циклов.<LINE>Эксклюзив для Cозерцателя.
+Perk_PoisonSpear_Name|Ядовитое копьё
+Perk_PoisonSpear_Desc|Начни экспедицию с ядовитым копьём.
+Perk_Boomerang_Name|Бумеранг
+Perk_Boomerang_Desc|Все камни с некоторым шансом могут быть заменены на бумеранг.
+Burden_Rot_Name|ГНИЛЬ
+Burden_Rot_Desc|Все регионы изначально полностью охвачены и заражены гнилью.<LINE>Это сделано только для усложнения задачи.
+Challenge_Rot_Name|Заражение гнилью
+Challenge_Rot_Desc|Зарази <score_target> регионов разумной гнилью [<current_score>/<score_target>]
+Challenge_ST_Name|Волчок
+Challenge_ST_Desc|Посети Волчка в регионе <region>
+Challenge_Warp_Name|Порталов за цикл
+Challenge_Warp_Desc|Создай <target> порталов за один цикл [<current>/<target>]
+challenge_Prince_Name|Доставка Принцу
+challenge_Prince_Desc|Доставь <item> Принцу
+Mission_Rot|Гниющий Мир

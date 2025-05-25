@@ -69,8 +69,11 @@ namespace WatcherExpeditions
             orig(self, name, firstRoomIndex, regionNumber, timelineIndex);
             if (Custom.rainWorld.ExpeditionMode && ExpeditionGame.activeUnlocks.Contains("bur-watcher_rot"))
             {
-                self.regionParams.corruptionEffectColor = RainWorld.RippleColor;
-                self.regionParams.corruptionEyeColor = RainWorld.RippleColor;
+                if (self.regionParams != null)
+                {
+                    self.regionParams.corruptionEffectColor = RainWorld.RippleColor;
+                    self.regionParams.corruptionEyeColor = RainWorld.RippleColor;
+                }
             }
         }
 
@@ -96,18 +99,14 @@ namespace WatcherExpeditions
 
         public static void RotWorld(World world)
         {
-            if (world == null)
-            {
-                return;
-            }
-            if (world.game == null)
+            if (world == null || world.game == null || world.game.GetStorySession == null)
             {
                 Debug.Log("Rot_World_Mission : Null Game");
                 return;
             }
-            if (world.game.GetStorySession == null)
+            if (world.game.GetStorySession.saveState == null)
             {
-                Debug.Log("Rot_World_Mission : Null GetStorySession");
+                Debug.Log("Rot_World_Mission : Null Save");
                 return;
             }
             if (Region.HasSentientRotResistance(world.name))

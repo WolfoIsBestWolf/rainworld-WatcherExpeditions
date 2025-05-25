@@ -22,4 +22,71 @@ challenge_Prince_Desc|Deliver the <item> to The Prince
 Mission_Rot|Rot World
 Watcher_Ex_Description|As the Watcher, form new paths and search within<LINE>the ripples with newfound purpose.
 
-Option_Watcher|Probably won't translate options
+
+WatcherExpeditions_Name|~Watcher Expedition Mod~
+WatcherExpeditions_Desc|Unofficial Watcher Expeditions.
+
+WEConfig_Name_RippleMax|Starting max Ripple
+WEConfig_Desc_RippleMax|Starting amount of max Ripple. You need 3 max Ripple to open Portals. 5 Ripple to hover. 8 Ripple to teleport to all Regions. 9 Ripple to enter Daemon.
+WEConfig_Name_RippleMin|Starting min Ripple
+WEConfig_Desc_RippleMin|Starting amount of minimum Ripple. If you didn't know, your minimum increases as you visit Spinning Top more times.
+WEConfig_Name_RippleStart|Starting Ripple
+WEConfig_Desc_RippleStart|Starting amount of Ripple. The karma replacement.
+WEConfig_Name_ChangeRipple|Echo changes max/min Ripple
+WEConfig_Desc_ChangeRipple|Allow Spinning Top to increase maximum and minimum Ripple amount. Still sets Ripple to the highest it can be. Echoes do not in vanilla Expedition.
+
+WEConfig_Name_KarmaFlower|Karma Flowers all regions
+WEConfig_Desc_KarmaFlower|Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability. If disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.
+
+WEConfig_Name_Unlock|Force unlock
+WEConfig_Desc_Unlock|Unlock the Watcher Expedition regardless of campaign completion.
+WEConfig_Name_UnlockPerks|
+WEConfig_Desc_UnlockPerks|
+ 
+ 
+WEConfig_Name_Hunt_Barnacle|Hunt - Barnacles
+WEConfig_Desc_Hunt_Barnacle|Allow Hunting challenges to pick : Barnacle. As of 1.10.2 they can be desheled with Snails.
+WEConfig_Name_Hunt_SandWorm|Hunt - Sand Worms
+WEConfig_Desc_Hunt_SandWorm|Allow Hunting challenges to pick : Sand Worm. Similiar Monster Kelp, but stun you making escape not possible once grabbed, and can hide.
+WEConfig_Name_Hunt_BigMoth|Hunt - Big Moth
+WEConfig_Desc_Hunt_BigMoth|Allow Hunting challenges to pick : Big Moth. With 1.10.2 these seem more fight-able and escapeable.
+WEConfig_Name_Hunt_BoxWorm|Hunt - Box Worm
+WEConfig_Desc_Hunt_BoxWorm|Allow Hunting challenges to pick : Box Worm. Box Worms can easily trap you, need to be activated before being killable, and aren't much fun to fight. Uninhabitated Box Worms are unkillable.
+WEConfig_Name_Hunt_BoneShaker|Hunt - Bone Shaker
+WEConfig_Desc_Hunt_BoneShaker|Allow Hunting challenges to pick : Bone Shaker. They only appear in rot or rotted regions and can be killed from the top, by knocking them over.
+ 
+WEConfig_Name_Challenge_Rot|Rot Spreading Challenge
+WEConfig_Desc_Challenge_Rot|Challenge where you need to infect regions to beat it.  5 with normal difficulty, range of 3-9.
+WEConfig_Name_Challenge_ST|
+WEConfig_Desc_Challenge_ST|
+  
+WEConfig_Name_RotWorld_Hunt|Rot Dimension - Hunt
+WEConfig_Desc_RotWorld_Hunt|Hunts count enemies within Rot Regions, such as DLLs and Red Centipedes.  As you have no choice in what Rot Region you get teleported to, this isn't recommended.
+WEConfig_Name_RotWorld_Shelter|Rot Dimension - Shelters
+WEConfig_Desc_RotWorld_Shelter|Expeditions will be able to start in Rot Regions. You will need to find an exit which then teleports you to a random region. Never Outer Rim
+ 
+
+WEConfig_Name_VanillaPassage|Passages for Watcher Campaign
+WEConfig_Desc_VanillaPassage|Enable functional but black screen passages in the Watcher Campaign.  Blackscreens for areas as it's not compatible with the Warp Sphere and there is no art for the new areas.
+WEConfig_Name_ColorFix|Fix Custom Color
+WEConfig_Desc_ColorFix|Watcher has his body color overritten with the areas shade of black, ignoring Custom Colors, Jolly Custom Colors and his default set dark blue. This makes it so Remix Custom and Jolly Custom colors work.
+WEConfig_Name_Sandbox|Watcher Sandbox
+WEConfig_Desc_Sandbox|Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement. Roz Lizards aren't really possible since they aren't a unique creature.
+WEConfig_Name_Music|Watcher Jukebox
+WEConfig_Desc_Music|Add Watcher soundtrack to the Jukebox. No unlock required.
+WEConfig_Name_STSpeak|Spinning Top speaking
+WEConfig_Desc_STSpeak|Allow Spinning Top to speak. It will choose dialogues in order.
+
+
+
+WEConfig_Name_blank|
+WEConfig_Desc_blank|
+
+
+
+
+
+
+
+
+

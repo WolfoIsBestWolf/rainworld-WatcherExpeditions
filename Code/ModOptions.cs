@@ -15,20 +15,20 @@ namespace WatcherExpeditions
 
 
         public static Configurable<bool> cfgCustomColorFix = instance.config.Bind("cfgCustomColorFix", true,
-         new ConfigurableInfo("Watcher has his body color overritten with the areas shade of black, ignoring Custom Colors, Jolly Custom Colors and his default set dark blue. \nThis makes it so Remix Custom and Jolly Custom colors work.", null, "", new object[]
+         new ConfigurableInfo("WEConfig_Desc_ColorFix", null, "", new object[]
          {
-              "Fix Custom Color"
+              "WEConfig_Name_ColorFix"
          }));
         public static Configurable<bool> cfgSandbox = instance.config.Bind("cfgSandbox", true,
-                 new ConfigurableInfo("Add Watcher creatures & items to Sandbox & Arena. They will add this officially eventually. No unlock requirement.\nRoz Lizards aren't really possible since they aren't a unique creature.", null, "", new object[]
+                 new ConfigurableInfo("WEConfig_Desc_Sandbox", null, "", new object[]
                  {
-              "Watcher Sandbox"
+              "WEConfig_Name_Sandbox"
                  }));
 
         public static Configurable<bool> cfgSpinningTopDialogue = instance.config.Bind("cfgSpinningTopDialogue", true,
-          new ConfigurableInfo("Allow Spinning Top to speak. It will choose dialogues in order.", null, "", new object[]
+          new ConfigurableInfo("WEConfig_Desc_STSpeak", null, "", new object[]
           {
-                        "Spinning Top speaking"
+              "WEConfig_Name_STSpeak"
           }));
         public static Configurable<bool> cfgDebugInfo = instance.config.Bind("cfgDebugInfo", false,
            new ConfigurableInfo("Dump a bunch of info", null, "", new object[]
@@ -36,129 +36,121 @@ namespace WatcherExpeditions
                 "Info Dump"
            }));
         public static Configurable<bool> cfgVanillaPassage = instance.config.Bind("cfgVanillaPassage", false,
-           new ConfigurableInfo("Enable functional but black screen passages in the Watcher Campaign.  Blackscreens for areas as it's not compatible with the Warp Sphere and there is no art for the new areas.", null, "", new object[]
+           new ConfigurableInfo("WEConfig_Desc_VanillaPassage", null, "", new object[]
            {
-                "Passages for Watcher Campaign"
+                "WEConfig_Name_VanillaPassage"
            }));
 
-        public static Configurable<bool> cfgButtonCombo = instance.config.Bind("cfgButtonCombo", true,
+        /*public static Configurable<bool> cfgButtonCombo = instance.config.Bind("cfgButtonCombo", true,
                    new ConfigurableInfo("For Ripple 9, if you press Special + Down, you will Camo without entering Ripplespace. This makes Ripple 9 not a trade off.", null, "", new object[]
                    {
                 "Ripplespace button Combo"
-                   }));
+                   }));*/
 
 
 
         public static Configurable<bool> cfgRotChallenge = instance.config.Bind("cfgRotChallenge", true,
-           new ConfigurableInfo("Challenge where you need to infect regions to beat it.  5 with normal difficulty, range of 3-9.", null, "", new object[]
+           new ConfigurableInfo("WEConfig_Desc_Challenge_Rot", null, "", new object[]
            {
-                "Rot Spreading Challenge"
+                "WEConfig_Name_Challenge_Rot"
            }));
 
         public static Configurable<bool> cfgWatcherMusic = instance.config.Bind("cfgWatcherMusic", true,
-            new ConfigurableInfo("Add Watcher soundtrack to the Jukebox. No unlock required.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Music", null, "", new object[]
             {
-                "Watcher Jukebox"
+                "WEConfig_Name_Music"
             }));
-        /*public static Configurable<bool> cfgMoveJukebox = instance.config.Bind("cfgMoveJukebox", true,
-           new ConfigurableInfo("Move the Jukebox button to better fit the Watcher next to the other slugcats.", null, "", new object[]
-           {
-                "Move Jukebox button"
-           }));*/
+ 
         public static Configurable<int> cfgWatcher_StartingRipple = instance.config.Bind("cfgWatcher_StartingRipple", 6,
-            new ConfigurableInfo("Starting amount of Ripple. The karma replacement.", new ConfigAcceptableRange<int>(1, 9), "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_RippleStart", new ConfigAcceptableRange<int>(1, 9), "", new object[]
             {
-                "Starting Ripple"
+                "WEConfig_Name_RippleStart"
             }));
         public static Configurable<int> cfgWatcher_StartingRippleMax = instance.config.Bind("cfgWatcher_StartingRippleMax", 9,
-            new ConfigurableInfo("Starting amount of max Ripple. You need 3 max Ripple to open Portals. 5 Ripple to hover. 8 Ripple to teleport to all Regions. 9 Ripple to enter Daemon.", new ConfigAcceptableRange<int>(1, 9), "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_RippleMax", new ConfigAcceptableRange<int>(1, 9), "", new object[]
             {
-                "Starting max Ripple"
+                "WEConfig_Name_RippleMax"
             }));
         public static Configurable<int> cfgWatcher_StartingRippleMin = instance.config.Bind("cfgWatcher_StartingRippleMin", 5,
-            new ConfigurableInfo("Starting amount of minimum Ripple. If you didn't know, your minimum increases as you visit Spinning Top more times.", new ConfigAcceptableRange<int>(1, 9), "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_RippleMin", new ConfigAcceptableRange<int>(1, 9), "", new object[]
             {
-                "Starting min Ripple"
+                "WEConfig_Name_RippleMin"
             }));
-        public static Configurable<int> cfgRippleMaxDifference = instance.config.Bind("cfgRippleMaxDifference", 6,
+       /* public static Configurable<int> cfgRippleMaxDifference = instance.config.Bind("cfgRippleMaxDifference", 6,
             new ConfigurableInfo("Your max and minimum Ripple will be at most this far apart. ", new ConfigAcceptableRange<int>(1, 9), "", new object[]
             {
                 "Max Ripple difference"
-            }));
+            }));*/
         public static Configurable<bool> cfgWatcher_Unlock = instance.config.Bind("cfgWatcher_Unlock", false,
-            new ConfigurableInfo("Unlock the Watcher Expedition regardless of campaign completion.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Unlock", null, "", new object[]
             {
-                "Force unlock"
+                "WEConfig_Name_Unlock"
             }));
         public static Configurable<bool> cfgWatcher_KarmaFlower = instance.config.Bind("cfgWatcher_KarmaFlower", true,
-           new ConfigurableInfo("Allow Karma Flowers to spawn in every region for Watcher Expeditions, as they are important for his Warp ability.\nIf disabled they still spawn in Outer Rim, Shattered Terrance, Daemon and rot regions.", null, "", new object[]
+           new ConfigurableInfo("WEConfig_Desc_KarmaFlower", null, "", new object[]
         {
-                "Karma Flowers all regions"
+                "WEConfig_Name_KarmaFlower"
         }));
-        public static Configurable<bool> cfgWatcher_WARA = instance.config.Bind("cfgWatcher_WARA", false,
+        /*public static Configurable<bool> cfgWatcher_WARA = instance.config.Bind("cfgWatcher_WARA", false,
                   new ConfigurableInfo("Expeditions can start in Shattered Terrance and Hunt challenges will count creatures in it.", null, "", new object[]
                {
                 "Shattered Terrance"
-               }));
+               }));*/
 
         public static Configurable<bool> cfgWatcher_RotEnemies = instance.config.Bind("cfgWatcher_RotEnemies", false,
-            new ConfigurableInfo("Hunts count enemies within Rot Regions, such as DLLs and Red Centipedes.  As you have no choice in what Rot Region you get teleported to, this isn't recommended.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_RotWorld_Hunt", null, "", new object[]
             {
-                "Rot Dimension - Hunt"
+                "WEConfig_Name_RotWorld_Hunt"
             }));
         public static Configurable<bool> cfgWatcher_RotShelter = instance.config.Bind("cfgWatcher_RotShelter", false,
-        new ConfigurableInfo("Expeditions will be able to start in Rot Regions. You will need to find an exit which then teleports you to a random region. Never Outer Rim", null, "", new object[]
+        new ConfigurableInfo("WEConfig_Desc_RotWorld_Shelter", null, "", new object[]
         {
-                "Rot Dimension - Shelters"
+                "WEConfig_Name_RotWorld_Shelter"
         }));
         public static Configurable<bool> cfgWatcher_RippleChange = instance.config.Bind("cfgWatcher_RippleChange", false,
-            new ConfigurableInfo("Allow Spinning Top to increase maximum and minimum Ripple amount. Still sets Ripple to the highest it can be. Echoes do not in vanilla Expedition.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_ChangeRipple", null, "", new object[]
             {
-                "Echo changes max/min Ripple"
+                "WEConfig_Name_ChangeRipple"
             }));
 
         //This shit does Not work.
-        public static Configurable<bool> cfgWatcher_WarpMap = instance.config.Bind("cfgWatcher_WarpMap", true,
+        /*public static Configurable<bool> cfgWatcher_WarpMap = instance.config.Bind("cfgWatcher_WarpMap", true,
             new ConfigurableInfo("Carry over discovered Warps that always have the same destination.", null, "", new object[]
             {
                 "Carry over Warp Map progress"
-            }));
+            }));*/
         public static Configurable<bool> cfgHunt_Barnacle = instance.config.Bind("cfgHunt_Barnacle", true,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Barnacle. As of 1.10.2 they can be desheled with Snails.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Hunt_Barnacle", null, "", new object[]
             {
-                "Hunt - Barnacles"
+                "WEConfig_Name_Hunt_Barnacle"
             }));
         public static Configurable<bool> cfgHunt_BigSandWorm = instance.config.Bind("cfgHunt_BigSandWorm", true,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Sand Worm. Similiar Monster Kelp, but stun you making escape not possible once grabbed, and can hide.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Hunt_SandWorm", null, "", new object[]
             {
-                "Hunt - Sand Worms"
+                "WEConfig_Name_Hunt_SandWorm"
             }));
         public static Configurable<bool> cfgHunt_BoxWorm = instance.config.Bind("cfgHunt_BoxWorm", false,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Box Worm. Box Worms can easily trap you, need to be activated before being killable, and aren't much fun to fight.\nUninhabitated Box Worms are unkillable.", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Hunt_BoxWorm", null, "", new object[]
             {
-                "Hunt - Box Worm"
+                "WEConfig_Name_Hunt_BoxWorm"
             }));
         public static Configurable<bool> cfgHunt_BigMoth = instance.config.Bind("cfgHunt_BigMoth", true,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Big Moth. With 1.10.2 these seem more fight-able and escapeable. ", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Hunt_BigMoth", null, "", new object[]
             {
-                "Hunt - Big Moth"
+                "WEConfig_Name_Hunt_BigMoth"
             }));
         public static Configurable<bool> cfgHunt_Rattler = instance.config.Bind("cfgHunt_Rattler", true,
-            new ConfigurableInfo("Allow Hunting challenges to pick : Bone Shaker. They only appear in rot regions and can be killed from the top, by knocking them over. ", null, "", new object[]
+            new ConfigurableInfo("WEConfig_Desc_Hunt_BoneShaker", null, "", new object[]
             {
-                "Hunt - Bone Shaker"
+                "WEConfig_Name_Hunt_BoneShaker"
             }));
-        public static Configurable<bool> cfgStowaway = instance.config.Bind("cfgStowaway", false,
-          new ConfigurableInfo("Add Stowaway to Sandbox, it can crash the game.", null, "", new object[]
-          {
-                "Stowaway"
-          }));
+ 
         public override void Initialize()
 		{
 			base.Initialize();
 			this.Tabs = new OpTab[]
 			{
-                new OpTab(this, "Watcher"),
+                new OpTab(this, Translate("Watcher")),
                 new OpTab(this, "~~~")
             };
 			this.AddCheckbox();
@@ -400,10 +392,10 @@ namespace WatcherExpeditions
 };
             var names = new string[]
              {
-                "Ripple",
-                "Rot",
-                "General",
-                "Hunts",
+                Translate("Ripple"),
+                Translate("Rot"),
+                Translate("General"),
+                Translate("Hunts"),
              };
             instance.PopulateWithConfigs(0, array, names, colors, 2);
 
@@ -418,8 +410,8 @@ namespace WatcherExpeditions
 
 
 
-            OpLabel TitleLabelW = new OpLabel(new Vector2(150f, 520), new Vector2(300f, 30f), "~Watcher Expedition Mod~", FLabelAlignment.Center, true, null);
-            TitleLabelW.description = "Unofficial Watcher Expeditions.";
+            OpLabel TitleLabelW = new OpLabel(new Vector2(150f, 520), new Vector2(300f, 30f), Translate("WatcherExpeditions_Name"), FLabelAlignment.Center, true, null);
+            TitleLabelW.description = Translate("WatcherExpeditions_Desc");
             TitleLabelW.color = Watcher;
  
             this.Tabs[0].AddItems(new UIelement[]
