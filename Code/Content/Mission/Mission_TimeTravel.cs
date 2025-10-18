@@ -26,8 +26,6 @@ namespace WatcherExpeditions
         public static void Start()
         {
  
-
-            On.Watcher.WarpPoint.GetAvailableOuterRimWarpTargets += WarpPoint_GetAvailableOuterRimWarpTargets;
         }
 
         public static void OverrideWarpPoints(Room room)
@@ -53,14 +51,9 @@ namespace WatcherExpeditions
                 regions.Add("OE");
             }
             string dest = regions[Random.Range(0, regions.Count)];
-            room.game.overWorld.regions = Region.LoadAllRegions(room.game.TimelinePoint);
+            room.game.overWorld.regions = Region.LoadAllRegions(room.game.TimelinePoint, room.game);
             Region region = room.game.overWorld.GetRegion(dest);
      
-        }
-
-        private static List<string> WarpPoint_GetAvailableOuterRimWarpTargets(On.Watcher.WarpPoint.orig_GetAvailableOuterRimWarpTargets orig, AbstractRoom room, bool forceUseMax)
-        {
-            throw new System.NotImplementedException();
         }
 
         
