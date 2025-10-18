@@ -1,5 +1,4 @@
 using Expedition;
-using HarmonyLib;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using RWCustom;

@@ -21,10 +21,10 @@ namespace WatcherExpeditions
             //IL.OverWorld.InitiateSpecialWarp_WarpPoint += OverwrideWAUADestination;
             IL.Room.Loaded += AddToysInExpeditionModeVeryImportant;
 
-            On.SpinningTopData.FromString += AlwaysSpawnST_WARA;
+            On.Watcher.SpinningTopData.FromString += AlwaysSpawnST_WARA;
         }
 
-        private static void AlwaysSpawnST_WARA(On.SpinningTopData.orig_FromString orig, SpinningTopData self, string s)
+        private static void AlwaysSpawnST_WARA(On.Watcher.SpinningTopData.orig_FromString orig, SpinningTopData self, string s)
         {
             orig(self, s);
             if (Custom.rainWorld.ExpeditionMode)

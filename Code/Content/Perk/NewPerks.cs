@@ -10,6 +10,7 @@ using System.IO;
 using Modding.Expedition;
 using Menu;
 using Mono.Cecil.Cil;
+
  
 namespace WatcherExpeditions
 {
@@ -33,8 +34,8 @@ namespace WatcherExpeditions
                 new Burden_Rotted()
             });
             
-            IL.Room.Loaded += AddPerkItems; 
-            On.Room.TrySpawnWarpPoint += Room_TrySpawnWarpPoint;
+            IL.Room.Loaded += AddPerkItems;
+            On.Room.TrySpawnWarpPoint_PlacedObject_bool += Room_TrySpawnWarpPoint;
 
             
         }
@@ -93,7 +94,7 @@ namespace WatcherExpeditions
         }
 
 
-        private static WarpPoint Room_TrySpawnWarpPoint(On.Room.orig_TrySpawnWarpPoint orig, Room self, PlacedObject po, bool saveInRegionState, bool skipIfInRegionState, bool deathPersistent)
+        private static WarpPoint Room_TrySpawnWarpPoint(On.Room.orig_TrySpawnWarpPoint_PlacedObject_bool orig, Room self, PlacedObject po, bool saveInRegionState)
         {
             if (Custom.rainWorld.ExpeditionMode)
             {
@@ -102,7 +103,7 @@ namespace WatcherExpeditions
                     (po.data as WarpPoint.WarpPointData).cycleExpiry = 0;
                 }             
             }
-            return orig(self, po, saveInRegionState, skipIfInRegionState, deathPersistent);
+            return orig(self, po, saveInRegionState);
 
         }
 
