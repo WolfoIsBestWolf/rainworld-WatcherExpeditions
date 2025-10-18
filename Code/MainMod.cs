@@ -40,7 +40,7 @@ namespace WatcherExpeditions
             }
             initialized_late = true;
             WLog.Start();
-            SandboxStuff.Start();
+            //SandboxStuff.Start();
         }
 
         public void RainWorld_OnModsInit(On.RainWorld.orig_OnModsInit orig, RainWorld self)
@@ -64,9 +64,9 @@ namespace WatcherExpeditions
             AddWatcherToMenu.Start();
             ST_ExpeditionStuff.Start();
 
-            ArenaStuff.Start();
+            //ArenaStuff.Start();
             JukeboxStuff.Add();
-            JollyCoopAdditions.Start();
+            //JollyCoopAdditions.Start();
             PassageFix.Start();
 
             FinishWAUA.Start();
@@ -87,7 +87,7 @@ namespace WatcherExpeditions
 
        
 
-        private static void FixCustomColorsNotWorking(ILContext il)
+        /*private static void FixCustomColorsNotWorking(ILContext il)
         {
             ILCursor c = new(il);
             if (c.TryGotoNext(MoveType.After,
@@ -115,7 +115,7 @@ namespace WatcherExpeditions
             {
                 Debug.Log("PassageWatchesVanilla Hook Failed");
             }
-        }
+        }*/
 
         private Conversation.ID PrinceConversation_TargetConversation(On.Watcher.PrinceBehavior.PrinceConversation.orig_TargetConversation orig, int highestConversationSeen, int infections)
         {

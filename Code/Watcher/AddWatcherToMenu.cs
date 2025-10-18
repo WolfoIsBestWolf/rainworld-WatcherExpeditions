@@ -31,7 +31,7 @@ namespace WatcherExpeditions
         {
             if (Custom.rainWorld.ExpeditionMode)
             {
-                SlugcatStats.Name name = Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].playerClass;
+                SlugcatStats.Name name = Custom.rainWorld.options.jollyPlayerOptionsArray[playerNumber].PlayerClass;
                 if (ModManager.Watcher && name == WatcherEnums.SlugcatStatsName.Watcher)
                 {
                     return WatcherEnums.SlugcatStatsName.Watcher;

@@ -19,6 +19,8 @@ namespace WatcherExpeditions
     {
         //public static bool ForceShowCamoHud;
 
+        //This was added right?
+
         public static void Start()
         {
             Hook hook = new Hook(typeof(Player).GetProperty("rippleLevel", BindingFlags.Instance | BindingFlags.Public).GetGetMethod(), rippleLevel);

@@ -1,4 +1,4 @@
-using BepInEx;
+/*using BepInEx;
 using UnityEngine;
 using MonoMod.Cil;
 using Mono.Cecil.Cil;
@@ -35,11 +35,6 @@ namespace WatcherExpeditions
                 //Debug.Log(a);
                 if (self.CharacterForColor == WatcherEnums.SlugcatStatsName.Watcher)
                 {
-
-                    
-                    /*switch (this.player.playerState.playerNumber)
-                    {
-                    }*/
                 }
             }
         }
@@ -54,3 +49,4 @@ namespace WatcherExpeditions
         }
     }
 }
+*/

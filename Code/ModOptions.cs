@@ -14,11 +14,11 @@ namespace WatcherExpeditions
 		public static WConfig instance = new WConfig();
 
 
-        public static Configurable<bool> cfgCustomColorFix = instance.config.Bind("cfgCustomColorFix", true,
+        /*public static Configurable<bool> cfgCustomColorFix = instance.config.Bind("cfgCustomColorFix", true,
          new ConfigurableInfo("WEConfig_Desc_ColorFix", null, "", new object[]
          {
               "WEConfig_Name_ColorFix"
-         }));
+         }));*/
         public static Configurable<bool> cfgSandbox = instance.config.Bind("cfgSandbox", true,
                  new ConfigurableInfo("WEConfig_Desc_Sandbox", null, "", new object[]
                  {
@@ -379,7 +379,7 @@ namespace WatcherExpeditions
                 cfgWatcher_Unlock,
                 cfgWatcherMusic,
                 cfgSandbox,
-                cfgCustomColorFix,
+                //cfgCustomColorFix,
                 cfgVanillaPassage,
                 cfgSpinningTopDialogue,
             };
