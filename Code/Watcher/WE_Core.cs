@@ -41,8 +41,9 @@ namespace WatcherExpeditions
 
             IL.Menu.KarmaLadder.KarmaSymbol.Update += EvilRippleSymbolWhenAboutToDie;
             IL.OverWorld.InitiateSpecialWarp_WarpPoint += RemoveForcedWORA;
+ 
         }
-
+ 
         private static void RemoveForcedWORA(ILContext il)
         {
             ILCursor c = new(il);

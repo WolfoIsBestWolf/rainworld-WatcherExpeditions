@@ -10,12 +10,15 @@
 
   <ItemGroup>
     <Compile Remove="backupold\**" />
+    <Compile Remove="ExpeditionsWatcherInDev\**" />
     <Compile Remove="old\**" />
     <Compile Remove="rainworld-expedition-copy-miscprog\**" />
     <EmbeddedResource Remove="backupold\**" />
+    <EmbeddedResource Remove="ExpeditionsWatcherInDev\**" />
     <EmbeddedResource Remove="old\**" />
     <EmbeddedResource Remove="rainworld-expedition-copy-miscprog\**" />
     <None Remove="backupold\**" />
+    <None Remove="ExpeditionsWatcherInDev\**" />
     <None Remove="old\**" />
     <None Remove="rainworld-expedition-copy-miscprog\**" />
   </ItemGroup>
