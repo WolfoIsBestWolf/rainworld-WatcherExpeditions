@@ -10,11 +10,14 @@ using BepInEx;
 using Mono.Cecil.Cil;
 using System;
 using UnityEngine;
+using System.Runtime.CompilerServices;
+using BepInEx.Logging;
 
 namespace WatcherExpeditions
 {
     public class WE_Core
     {
+        public static int num;
         public static void Start()
         {
             On.SaveState.ctor += WatcherExpeditionStart;
@@ -187,10 +190,7 @@ namespace WatcherExpeditions
             if (ChallengeTools.creatureSpawns.ContainsKey(WatcherEnums.SlugcatStatsName.Watcher.value))
             {
                 ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item2);
-                if (WConfig.cfgHunt_Rattler.Value)
-                {
-                    ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item3);
-                }         
+                ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item3);
                 ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item);
             }
         }
@@ -248,29 +248,29 @@ namespace WatcherExpeditions
                 {
                     {//3 hp, not too dangerous. Probably still more dangerous than a green Lizard that is 10 points
                         "DrillCrab",
-                        12
+                        16
                     },
                    { //Killable & Edible
                         "SandGrub",
-                        4
+                        2
                     },
                     //SmallMoth (WAUA only)
                     { //Apparently easily killabe from the top
                         "Rattler",
-                        5
+                        4
                     },
                     //SkyWhale
                     {
                         "FireSprite",
-                        8
+                        4
                     },
                     {
                         "ScavengerTemplar",
-                        14
+                        12
                     },
                     {
                         "ScavengerDisciple",
-                        15
+                        12
                     },
                     //Loach
                     //RotLoach
@@ -284,7 +284,11 @@ namespace WatcherExpeditions
                     },
                     {
                         "IndigoLizard",
-                        10
+                        7
+                    },
+                    {
+                        "PeachLizard",
+                        5
                     },
                     {
                         "Rat",
@@ -292,31 +296,41 @@ namespace WatcherExpeditions
                     },
                     {
                         "Frog",
-                        4
+                        1
                     },
                     {
                         "Tardigrade",
+                        2
+                    },
+                    {
+                        "Angler",
+                        8
+                    },
+                    {
+                        "MothGrub",
+                        1
+                    },
+                    {
+                        "TowerCrab",
+                        16
+                    },
+                    {
+                        "Barnacle",
+                        4
+                    },
+                    {
+                        "BoxWorm",
+                        12
+                    },
+                    {
+                        "BigMoth",
+                        8
+                    },
+                    {
+                        "BigSandGrub",
                         4
                     }
                 };
-
-
-                if (WConfig.cfgHunt_Barnacle.Value)
-                {
-                    dict.Add("Barnacle", 5);
-                }
-                if (WConfig.cfgHunt_BoxWorm.Value)
-                {
-                    dict.Add("BoxWorm", 22);
-                }
-                if (WConfig.cfgHunt_BigMoth.Value)
-                {
-                    dict.Add("BigMoth", 16);
-                }
-                if (WConfig.cfgHunt_BigSandWorm.Value)
-                {
-                    dict.Add("BigSandGrub", 11);
-                }
            
                 foreach (KeyValuePair<string, int> keyValuePair in newDict)
                 {
@@ -385,19 +399,18 @@ namespace WatcherExpeditions
             {
                 List<string> shelters = new List<string>
                 {
-                    /*"wara_s22",
-                    "wara_s23",
-                    "wara_s24",*/
                     "warb_s11",
                     "warb_s15",
                     "warb_s17",
                     "warb_s29",
+                    "warb_s31",
                     "warc_s01",
                     "warc_s02",
                     "warc_s03",
                     "warc_s04",
                     "warc_s05",
                     "warc_s06",
+                    "warc_s07",
                     "ward_s07",
                     "ward_s09",
                     "ward_s13",
@@ -416,19 +429,16 @@ namespace WatcherExpeditions
                     "warf_s08",
                     "warf_s14",
                     "warf_s18",
+                    "warf_s32",
                     "warg_s10",
                     "warg_s16",
                     "warg_s20",
                     "warg_s21",
                     "warg_s26",
                     "warg_s27",
-                     /*"waua_s01",
-                    "waua_s01b",
-                    "waua_s02b",*/
                     "wbla_s01",
                     "wbla_s02",
                     "wbla_s03",
-                    //"wora_s01",
                     "wpta_s01",
                     "wpta_s02",
                     "wpta_s03",
@@ -448,7 +458,9 @@ namespace WatcherExpeditions
                     "wska_s07",
                     "wska_s08",
                     "wska_s09",
+                    "wska_s0n",
                     "wskb_s06",
+                    "wskb_s0n",
                     "wskc_s01",
                     "wskc_s02",
                     "wskd_s03",
@@ -460,16 +472,30 @@ namespace WatcherExpeditions
                     "wtdb_s01",
                     "wtdb_s02",
                     "wtdb_s03",
+                    "wtdb_s04",
                     "wvwa_s01",
                     "wvwa_s02",
                     "wvwa_s03",
+                    "wvwb_s01",
+                    "wvwb_s02",
+                    "wmpa_s01",
+                    "wmpa_s02",
+                    "wmpa_s03",
+                    "wmpa_s04",
+                    "wmpa_s05",
+                    "wpga_s01",
+                    "wpga_s02",
+                    "wpga_s03",
+                    "wpga_s04",
+                    "wpta_s01",
+                    "wpta_s02",
+                    "wpta_s03",
                 };
                 
                 if (WConfig.cfgWatcher_RotShelter.Value)
                 {
                     string[] rotShelters = new string[]
                     {
-                         //"wssr_s03",
                         "wdsr_s04",
                         "wsur_s04",
                         "wsur_s06",
@@ -515,9 +541,9 @@ namespace WatcherExpeditions
                     "WRRA", //Rusted Wrecks
                     //"WRSA", //Daemon
                     "WSKA", //Torrential Railways
-                    "WSKB", //Sunlit Port
+                    "WSKB", //Sunbaked Alley
                     "WSKC", //Stormy Coast
-                    "WSKD", //Shrouded Coast
+                    "WSKD", //Shrouded Stacks
                     //"WSSR", //Unfortunate Evolution
                     //"WDSR", //Drainage - Rot
                     //"WGWR", //Garbage - Rot
@@ -526,6 +552,9 @@ namespace WatcherExpeditions
                     "WTDA", //Torrid Desert
                     "WTDB", //Desolate Tract
                     "WVWA", //Verdant Waterways
+                    "WVWB", //Fractured Gateways
+                    "WPGA", //Pillar Grove
+                    "WMPA", //Migration Path
                 };
                 return source.ToList<string>();
             }

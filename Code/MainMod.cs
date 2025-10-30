@@ -1,21 +1,21 @@
-﻿using BepInEx;
+﻿using System;
+//using System;
+using System.Collections.Generic;
+using BepInEx;
 using Expedition;
+using Menu;
 using Modding.Expedition;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MoreSlugcats;
 using RWCustom;
-//using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Watcher;
-using Menu;
-using System;
  
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.1.2")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.1.3")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
@@ -29,7 +29,6 @@ namespace WatcherExpeditions
         }
         public void OnDisable()
         {
-           
         }
         private void RainWorld_PostModsInit(On.RainWorld.orig_PostModsInit orig, RainWorld self)
         {
