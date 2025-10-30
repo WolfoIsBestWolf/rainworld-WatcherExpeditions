@@ -119,31 +119,6 @@ namespace WatcherExpeditions
             {
                 "Carry over Warp Map progress"
             }));*/
-        public static Configurable<bool> cfgHunt_Barnacle = instance.config.Bind("cfgHunt_Barnacle", true,
-            new ConfigurableInfo("WEConfig_Desc_Hunt_Barnacle", null, "", new object[]
-            {
-                "WEConfig_Name_Hunt_Barnacle"
-            }));
-        public static Configurable<bool> cfgHunt_BigSandWorm = instance.config.Bind("cfgHunt_BigSandWorm", true,
-            new ConfigurableInfo("WEConfig_Desc_Hunt_SandWorm", null, "", new object[]
-            {
-                "WEConfig_Name_Hunt_SandWorm"
-            }));
-        public static Configurable<bool> cfgHunt_BoxWorm = instance.config.Bind("cfgHunt_BoxWorm", false,
-            new ConfigurableInfo("WEConfig_Desc_Hunt_BoxWorm", null, "", new object[]
-            {
-                "WEConfig_Name_Hunt_BoxWorm"
-            }));
-        public static Configurable<bool> cfgHunt_BigMoth = instance.config.Bind("cfgHunt_BigMoth", true,
-            new ConfigurableInfo("WEConfig_Desc_Hunt_BigMoth", null, "", new object[]
-            {
-                "WEConfig_Name_Hunt_BigMoth"
-            }));
-        public static Configurable<bool> cfgHunt_Rattler = instance.config.Bind("cfgHunt_Rattler", true,
-            new ConfigurableInfo("WEConfig_Desc_Hunt_BoneShaker", null, "", new object[]
-            {
-                "WEConfig_Name_Hunt_BoneShaker"
-            }));
  
         public override void Initialize()
 		{
@@ -351,7 +326,7 @@ namespace WatcherExpeditions
 
             Tabs[0].colorCanvas = WatcherDark;
 
-            var array = new ConfigurableBase[4][];
+            var array = new ConfigurableBase[3][];
             var colors = new Color[]
              {
                 Watcher,
@@ -372,7 +347,6 @@ namespace WatcherExpeditions
                 cfgRotChallenge,
                 cfgWatcher_RotShelter,
                 cfgWatcher_RotEnemies,
-                cfgHunt_Rattler,
             };
             array[2] = new ConfigurableBase[]
             {
@@ -383,19 +357,11 @@ namespace WatcherExpeditions
                 cfgVanillaPassage,
                 cfgSpinningTopDialogue,
             };
-            array[3] = new ConfigurableBase[]
-{
-                cfgHunt_Barnacle,
-                cfgHunt_BigMoth,
-                cfgHunt_BigSandWorm,
-                cfgHunt_BoxWorm,
-};
             var names = new string[]
              {
                 Translate("Ripple"),
                 Translate("Rot"),
                 Translate("General"),
-                Translate("Hunts"),
              };
             instance.PopulateWithConfigs(0, array, names, colors, 2);
 
