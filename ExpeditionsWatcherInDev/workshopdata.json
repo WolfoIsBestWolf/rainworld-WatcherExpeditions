@@ -2,11 +2,11 @@
   "Title": "Watcher Expeditions",
   "Description": "Adds Watcher to the Expedition game mode.",
   "ID": "WatcherExpeditions",
-  "Version": "1.0.1",
-  "TargetGameVersion": "v1.10.2",
+  "Version": "1.2.1",
+  "TargetGameVersion": "v1.11.3",
   "Requirements": "expedition,watcher",
   "RequirementNames": "Expedition,The Watcher",
-  "Authors": "Wolfo",
+  "Authors": "Wolfo, shrubfromtomorrow",
   "Visibility": "Public",
   "Tags": [
     "Game Modes"

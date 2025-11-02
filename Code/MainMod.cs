@@ -15,7 +15,7 @@ using Watcher;
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.1")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.2")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;

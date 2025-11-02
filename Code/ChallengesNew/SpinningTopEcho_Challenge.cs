@@ -57,19 +57,20 @@ namespace WatcherExpeditions
         {
             List<string> list = new List<string>()
             {
-                "WARB",
-                "WARC",
-                "WARD",
-                "WARE",
                 "WARF",
-                "WBLA",
-                "WPTA",
-                "WRFB",
-                "WSKC",
-                "WSKD",
-                "WTDA",
                 "WTDB",
+                "WBLA",
+                "WRFB",
+                "WTDA",
+                "WARE",
+                "WSKC",
                 "WVWA",
+                "WPTA",
+                "WARC",
+                "WARB",
+                "WVWB",               
+                //"WARD", //Removed 1.5
+                //"WSKD", //Removed 1.5
             };
            
             string region = list[UnityEngine.Random.Range(0, list.Count)];
@@ -126,6 +127,13 @@ namespace WatcherExpeditions
                 this.hidden = (array[2] == "1");
                 this.revealed = (array[3] == "1");
                 this.UpdateDescription();
+
+                if (regionName == "WARD" || regionName == "WSKD")
+                {
+                    //Were removed in 1.5.
+                    //Backwards compat auto complete
+                    this.completed = true;
+                }
             }
             catch (Exception ex)
             {
