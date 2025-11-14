@@ -2,7 +2,7 @@
   "Title": "Watcher Expeditions",
   "Description": "Adds Watcher to the Expedition game mode.",
   "ID": "WatcherExpeditions",
-  "Version": "1.2.1",
+  "Version": "1.2.2",
   "TargetGameVersion": "v1.11.3",
   "Requirements": "expedition,watcher",
   "RequirementNames": "Expedition,The Watcher",
