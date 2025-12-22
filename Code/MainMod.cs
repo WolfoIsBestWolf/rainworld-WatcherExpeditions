@@ -2,6 +2,7 @@
 //using System;
 using System.Collections.Generic;
 using BepInEx;
+using BepInEx.Logging;
 using Expedition;
 using Menu;
 using Modding.Expedition;
@@ -15,20 +16,23 @@ using Watcher;
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.2")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.3")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
         public static bool initialized_late = false;
         public static bool slugbase = false;
+        internal static ManualLogSource? logger;
 
         public void OnEnable()
         {
+            logger = Logger;
             On.RainWorld.OnModsInit += RainWorld_OnModsInit;
             On.RainWorld.PostModsInit += RainWorld_PostModsInit;
         }
         public void OnDisable()
         {
+            logger = null;
         }
         private void RainWorld_PostModsInit(On.RainWorld.orig_PostModsInit orig, RainWorld self)
         {
@@ -83,7 +87,6 @@ namespace WatcherExpeditions
             //IL.PlayerGraphics.ApplyPalette += FixCustomColorsNotWorking;
             Futile.atlasManager.LoadAtlas("atlases/watcher_expedition");
         }
-
        
 
         /*private static void FixCustomColorsNotWorking(ILContext il)
@@ -165,12 +168,5 @@ namespace WatcherExpeditions
         {
             return orig(region);
         }
-
-
-
-
-       
-
-      
     }
 }

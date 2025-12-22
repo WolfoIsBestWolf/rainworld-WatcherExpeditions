@@ -113,13 +113,25 @@ namespace WatcherExpeditions
                 "WEConfig_Name_ChangeRipple"
             }));
 
+        public static Configurable<bool> cfgWatcher_DialCharged = instance.config.Bind("cfgWatcher_DialCharged", false,
+            new ConfigurableInfo("WEConfig_Desc_DialCharged", null, "", new object[]
+            {
+                "WEConfig_Name_DialCharged"
+            }));
+
+        public static Configurable<int> cfgWatcher_DialAmount = instance.config.Bind("cfgWatcher_DialAmount", 50,
+            new ConfigurableInfo("WEConfig_Desc_DialAmount", new ConfigAcceptableRange<int>(1, 100), "", new object[]
+            {
+                "WEConfig_Name_DialAmount"
+            }));
+
         //This shit does Not work.
         /*public static Configurable<bool> cfgWatcher_WarpMap = instance.config.Bind("cfgWatcher_WarpMap", true,
             new ConfigurableInfo("Carry over discovered Warps that always have the same destination.", null, "", new object[]
             {
                 "Carry over Warp Map progress"
             }));*/
- 
+
         public override void Initialize()
 		{
 			base.Initialize();
@@ -326,7 +338,7 @@ namespace WatcherExpeditions
 
             Tabs[0].colorCanvas = WatcherDark;
 
-            var array = new ConfigurableBase[3][];
+            var array = new ConfigurableBase[4][];
             var colors = new Color[]
              {
                 Watcher,
@@ -357,11 +369,17 @@ namespace WatcherExpeditions
                 cfgVanillaPassage,
                 cfgSpinningTopDialogue,
             };
+            array[3] = new ConfigurableBase[]
+            {
+                cfgWatcher_DialCharged,
+                cfgWatcher_DialAmount
+            };
             var names = new string[]
              {
                 Translate("Ripple"),
                 Translate("Rot"),
                 Translate("General"),
+                Translate("Perks"),
              };
             instance.PopulateWithConfigs(0, array, names, colors, 2);
 

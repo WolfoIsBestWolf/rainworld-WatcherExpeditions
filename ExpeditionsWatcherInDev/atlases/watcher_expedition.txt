@@ -1,6 +1,6 @@
 {"frames": {
 
-"Symbol_RipplePerk.png":
+"Symbol_CamoPerk.png":
 {
 	"frame": {"x":0,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -8,7 +8,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Symbol_PoisonSpear.png":
+"Symbol_DialWarpPerk.png":
 {
 	"frame": {"x":32,"y":0,"w":32,"h":32},
 	"rotated": false,
@@ -16,9 +16,17 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
-"Symbol_CamoPerk.png":
+"Symbol_PoisonSpear.png":
 {
 	"frame": {"x":64,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Symbol_RipplePerk.png":
+{
+	"frame": {"x":96,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -29,8 +37,8 @@
 	"version": "1.0",
 	"image": "watcher_expedition.png",
 	"format": "RGBA8888",
-	"size": {"w":96,"h":32},
+	"size": {"w":128,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:dbab3d25c1248c476dbaf2eea40c047a:eef68d529b62c93ca31a684fce1689c0:3bfa90b8c903b46406d00b0f44dd4898$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f6ea0ca0959e64060e88c6a36130f98c:50c599a52e4f28c637124ac24b8fd0e8:fa236b992d915dc1bb9b2905db1471de$"
 }
 }
