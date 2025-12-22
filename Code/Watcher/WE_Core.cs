@@ -12,12 +12,15 @@ using System;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace WatcherExpeditions
 {
     public class WE_Core
     {
         public static int num;
+
         public static void Start()
         {
             On.SaveState.ctor += WatcherExpeditionStart;
@@ -30,6 +33,7 @@ namespace WatcherExpeditions
             On.Expedition.ChallengeTools.GenerateCreatureScores += WatcherCreatures;
             On.Expedition.ChallengeTools.AppendAdditionalCreatureSpawns += AddAdditional;
             IL.Expedition.ChallengeTools.ParseCreatureSpawns += AddRotRegionsForCreatureSpawns;
+            On.Expedition.ChallengeTools.ItemName += WatcherItems;
 
             On.SaveState.SessionEnded += SaveChallengeProgressAfterST;
        
@@ -130,7 +134,7 @@ namespace WatcherExpeditions
             }
         }
 
-          
+
 
         private static void WatcherExplosiveJumpFix(ILContext il)
         {
@@ -150,11 +154,11 @@ namespace WatcherExpeditions
             }
             else
             {
-               Debug.Log("WatcherExpedition: WatcherExplosiveJumpFix fail");
+                Debug.Log("WatcherExpedition: WatcherExplosiveJumpFix fail");
             }
         }
 
-       
+
         private static bool RemoveWatcherRoomScripts(On.Expedition.ExpeditionGame.orig_IsUndesirableRoomScript orig, UpdatableAndDeletable item)
         {
             if (item is WatcherRoomSpecificScript.WAUA_TOYS || item is WatcherRoomSpecificScript.WAUA_BATH || item is WatcherRoomSpecificScript.WORA_AI || item is WatcherRoomSpecificScript.WORA_DESERT6 || item is WatcherRoomSpecificScript.WORA_KarmaSigils)
@@ -347,6 +351,19 @@ namespace WatcherExpeditions
             }
         }
 
+        private static string WatcherItems(On.Expedition.ChallengeTools.orig_ItemName orig, AbstractPhysicalObject.AbstractObjectType type)
+        {
+            if (type == AbstractPhysicalObject.AbstractObjectType.GraffitiBomb)
+            {
+                return ChallengeTools.IGT.Translate("Graffiti Bombs");
+            }
+            if (type == WatcherEnums.AbstractObjectType.Boomerang)
+            {
+                return ChallengeTools.IGT.Translate("Boomerangs");
+            }
+            return orig(type);
+        }
+
         private static void WatcherExpeditionStart(On.SaveState.orig_ctor orig, SaveState self, SlugcatStats.Name saveStateNumber, PlayerProgression progression)
         {
             orig(self,saveStateNumber, progression);
@@ -526,26 +543,26 @@ namespace WatcherExpeditions
             {
                 string[] source = new string[]
                {
-                    //"WARA", //Shattered Terrance (Pre-Final area)
+                    "WARA", //Shattered Terrance (Pre-Final area)
                     "WARB", //Salination
                     "WARC", //Fetid Glen
                     "WARD", //Cold Storage
                     "WARE", //Heat Ducts
                     "WARF", //Aether Ridge
                     "WARG", //The Surface
-                    //"WAUA", //Ancient Urban (Final area)
+                    "WAUA", //Ancient Urban (Final area)
                     "WBLA", //Badlands
-                    //"WORA", //Outer Rim
+                    "WORA", //Outer Rim
                     "WPTA", //Signal Spires
                     "WRFA", //Coral Caves
                     "WRFB", //Turbulent Pump
                     "WRRA", //Rusted Wrecks
-                    //"WRSA", //Daemon
+                    "WRSA", //Daemon
                     "WSKA", //Torrential Railways
                     "WSKB", //Sunbaked Alley
                     "WSKC", //Stormy Coast
                     "WSKD", //Shrouded Stacks
-                    //"WSSR", //Unfortunate Evolution
+                    "WSSR", //Unfortunate Evolution
                     //"WDSR", //Drainage - Rot
                     //"WGWR", //Garbage - Rot
                     //"WHIR", //Industrial - Rot
@@ -562,8 +579,72 @@ namespace WatcherExpeditions
             return orig(i);
         }
 
-    
+        public static Dictionary<string, string> FillWatcherMapRegions()
+        {
+            Dictionary<string, string> portalsRaw = new Dictionary<string, string>();
 
-         
+            foreach (var region in SlugcatStats.SlugcatStoryRegions(WatcherEnums.SlugcatStatsName.Watcher).ConvertAll(s => s.ToLowerInvariant()))
+            {
+                if (Custom.rainWorld.regionWarpRooms.ContainsKey(region))
+                {
+                    foreach (var warp in Custom.rainWorld.regionWarpRooms[region])
+                    {
+                        string room = warp.Split(':')[0].ToLowerInvariant();
+
+                        string settingsPath = AssetManager.ResolveFilePath("World" + Path.DirectorySeparatorChar + region + "-rooms" + Path.DirectorySeparatorChar + room + "_settings.txt");
+
+                        if (!File.Exists(settingsPath))
+                        {
+                            continue;
+                        }
+
+                        foreach (string line in File.ReadLines(settingsPath))
+                        {
+                            if (!line.StartsWith("PlacedObjects:"))
+                                continue;
+
+                            string raw = line.Substring("PlacedObjects:".Length);
+
+                            string validated = Custom.ValidateSpacedDelimiter(raw, ",");
+                            string[] objects = Regex.Split(validated, ", ");
+
+                            foreach (string obj in objects)
+                            {
+                                string trimmed = obj.Trim();
+                                if (trimmed.StartsWith("WarpPoint>"))
+                                {
+                                    portalsRaw[trimmed] = room.ToUpperInvariant();
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            Dictionary<string, string> watcherMapPortals = new Dictionary<string, string>();
+            foreach (var portal in portalsRaw)
+            {
+                string[] array = Regex.Split(portal.Key, "><");
+
+                PlacedObject obj = new PlacedObject(PlacedObject.Type.None, null);
+                obj.FromString(array);
+
+                var data = obj.data as WarpPoint.WarpPointData;
+                if (data == null) continue;
+
+                string key = NewWarpPointIdentifyingString(data, portal.Value);
+                watcherMapPortals[key] = obj.data.owner.ToString();
+            }
+            return watcherMapPortals;
+        }
+
+        // ripoff of WarpPointIdentifyingString but don't use game for timeline because ew
+        private static string NewWarpPointIdentifyingString(WarpPoint.WarpPointData data, string sourceRoom)
+        {
+            var timeline = data.sourceTimeline ?? SlugcatStats.Timeline.Watcher;
+
+            return $"{sourceRoom}:{timeline}:{data.uuidPair}";
+        }
     }
 }

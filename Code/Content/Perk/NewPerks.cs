@@ -1,17 +1,21 @@
-using Watcher;
-using MoreSlugcats;
+using System;
 using System.Collections.Generic;
-using Expedition;
-using MonoMod.Cil;
-using JetBrains.Annotations;
-using RWCustom;
-using UnityEngine;
 using System.IO;
-using Modding.Expedition;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Expedition;
+using JetBrains.Annotations;
 using Menu;
+using Modding.Expedition;
 using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MoreSlugcats;
+using RWCustom;
+using Steamworks;
+using UnityEngine;
+using Watcher;
 
- 
+
 namespace WatcherExpeditions
 {
     public class NewPerks
@@ -21,13 +25,14 @@ namespace WatcherExpeditions
         {
             On.Menu.UnlockDialog.TogglePerk += BlockPerks;
             On.Menu.UnlockDialog.ToggleBurden += UnlockDialog_ToggleBurden;
-            
-            CustomPerks.Register(new CustomPerk[] 
+
+            CustomPerks.Register(new CustomPerk[]
             {
                 //new Perk_Boomerang(),
                 new Perk_Camo(),
                 new Perk_PermamentWarps(),
-                new Perk_PoisonSpear()
+                new Perk_PoisonSpear(),
+                new Perk_DialWarp(),
             });
             CustomBurdens.Register(new CustomBurden[]
             {
@@ -36,8 +41,18 @@ namespace WatcherExpeditions
             
             IL.Room.Loaded += AddPerkItems;
             On.Room.TrySpawnWarpPoint_PlacedObject_bool += Room_TrySpawnWarpPoint;
+            On.PlayerProgression.GetOrInitiateSaveState += PlayerProgression_GetOrInitiateSaveState;
+            IL.Menu.FastTravelScreen.ctor += FastTravelScreen_ctor;
 
-            
+            IL.Watcher.WarpMap.LoadWarpConnections += WarpMap_LoadWarpConnections;
+            //new MonoMod.RuntimeDetour.Hook(typeof(RegionState.RippleSpawnEggState).GetProperty(nameof(RegionState.RippleSpawnEggState.WarpEggThreshold), System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetGetMethod(), typeof(NewPerks).GetMethod(nameof(NewPerks.RegionState_RippleSpawnEggState_WarpEggThreshold)));
+            var targetProperty = typeof(RegionState.RippleSpawnEggState).GetProperty("WarpEggThreshold", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+
+            var targetGetter = targetProperty?.GetGetMethod(true);
+
+            var hookMethod = NewPerks.RegionState_RippleSpawnEggState_WarpEggThreshold;
+
+            new MonoMod.RuntimeDetour.Hook(targetGetter, hookMethod);
         }
 
         private static void UnlockDialog_ToggleBurden(On.Menu.UnlockDialog.orig_ToggleBurden orig, UnlockDialog self, string message)
@@ -107,6 +122,85 @@ namespace WatcherExpeditions
 
         }
 
+        private static SaveState PlayerProgression_GetOrInitiateSaveState(On.PlayerProgression.orig_GetOrInitiateSaveState orig, PlayerProgression self, SlugcatStats.Name saveStateNumber, RainWorldGame game, ProcessManager.MenuSetup setup, bool saveAsDeathOrQuit)
+        {
+            SaveState saveState = orig(self, saveStateNumber, game, setup, saveAsDeathOrQuit);
 
+            if (Custom.rainWorld.ExpeditionMode && ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
+            {
+                Dictionary<string, string> watcherMapPortals = WE_Core.FillWatcherMapRegions();
+                if (saveState.miscWorldSaveData.discoveredWarpPoints.Count == 0)
+                {
+                    foreach (var kvp in watcherMapPortals)
+                    {
+                        saveState.miscWorldSaveData.discoveredWarpPoints[kvp.Key] = kvp.Value;
+                    }
+                    if (ExpeditionGame.activeUnlocks.Contains("unl-watcher-dialwarp"))
+                    {
+                        saveState.miscWorldSaveData.hasRippleEggWarpAbility = true; 
+                        saveState.miscWorldSaveData.rippleEggsCollected = WConfig.cfgWatcher_DialCharged.Value ? WConfig.cfgWatcher_DialAmount.Value : 0;
+                        saveState.miscWorldSaveData.rippleEggsToRespawn.Clear();
+                    }
+                }
+            }
+            return saveState;
+        }
+
+        private static int RegionState_RippleSpawnEggState_WarpEggThreshold(Func<int> orig)
+        {
+            if (Custom.rainWorld.ExpeditionMode && ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
+            {
+                return WConfig.cfgWatcher_DialAmount.Value;
+            }
+            return orig();
+        }
+
+        private static void WarpMap_LoadWarpConnections(ILContext il)
+        {
+            ILCursor c = new ILCursor(il);
+            if (c.TryGotoNext(MoveType.After,
+                x => x.MatchCallOrCallvirt(typeof(List<string>).GetProperty("Item").GetGetMethod()),
+                x => x.MatchCallOrCallvirt(typeof(string).GetMethod(nameof(string.ToLowerInvariant))),
+                x => x.MatchCallOrCallvirt(typeof(List<string>).GetMethod(nameof(List<string>.Contains))),
+                x => x.MatchStloc(out _)))
+            {
+                c.Index--;
+                c.EmitDelegate<Func<bool, bool>>(containsResult =>
+                {
+                    if (Custom.rainWorld.ExpeditionMode &&
+                        ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
+                    {
+                        return true;
+                    }
+
+                    return containsResult;
+                });
+            }
+            else UnityEngine.Debug.Log(nameof(WarpMap_LoadWarpConnections) + " no workie " + il);
+        }
+
+        private static void FastTravelScreen_ctor(ILContext il)
+        {
+            ILCursor c = new(il);
+
+            if (c.TryGotoNext(MoveType.After,
+                x => x.MatchLdsfld(typeof(ModManager), nameof(ModManager.Expedition))))
+            {
+                c.EmitDelegate<Func<bool, bool>>(expedition =>
+                {
+                    if (Custom.rainWorld.ExpeditionMode &&
+                        ExpeditionData.slugcatPlayer == WatcherEnums.SlugcatStatsName.Watcher)
+                    {
+                        return false;
+                    }
+
+                    return expedition;
+                });
+            }
+            else
+            {
+                UnityEngine.Debug.Log(nameof(FastTravelScreen_ctor) + " no workie " + il);
+            }
+        }
     }
 }

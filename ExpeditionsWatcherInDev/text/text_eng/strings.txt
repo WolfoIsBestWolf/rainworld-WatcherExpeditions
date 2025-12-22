@@ -6,6 +6,8 @@ Perk_PoisonSpear_Name|Poison Spear
 Perk_PoisonSpear_Desc|Start the expedition with a poison tipped Spear
 Perk_Boomerang_Name|Boomerang Fever
 Perk_Boomerang_Desc|All rocks have a chance to be replaced with a Boomerang
+Perk_DialWarp_Name|Dial Warp
+Perk_DialWarp_Desc|Dial Warp (Ripple Egg Warp) is unlocked from the start.<LINE>Watcher Exclusive
 
 Burden_Rot_Name|Rotten
 Burden_Rot_Desc|All regions start entirely overtaken and infected with rot.<LINE>This is meant to be for the challenge only.
@@ -42,6 +44,9 @@ WEConfig_Name_Unlock|Force unlock
 WEConfig_Desc_Unlock|Unlock the Watcher Expedition regardless of campaign completion.
 WEConfig_Name_UnlockPerks|
 WEConfig_Desc_UnlockPerks|
+
+WEConfig_Name_DialCharged|Start with the Dial Warp perk fully charged
+WEConfig_Name_DialAmount|Ripple eggs required for dial warp
  
  
 WEConfig_Name_Hunt_Barnacle|Hunt - Barnacles
