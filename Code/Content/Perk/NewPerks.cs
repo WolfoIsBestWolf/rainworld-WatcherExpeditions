@@ -45,14 +45,16 @@ namespace WatcherExpeditions
             IL.Menu.FastTravelScreen.ctor += FastTravelScreen_ctor;
 
             IL.Watcher.WarpMap.LoadWarpConnections += WarpMap_LoadWarpConnections;
-            //new MonoMod.RuntimeDetour.Hook(typeof(RegionState.RippleSpawnEggState).GetProperty(nameof(RegionState.RippleSpawnEggState.WarpEggThreshold), System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetGetMethod(), typeof(NewPerks).GetMethod(nameof(NewPerks.RegionState_RippleSpawnEggState_WarpEggThreshold)));
-            var targetProperty = typeof(RegionState.RippleSpawnEggState).GetProperty("WarpEggThreshold", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
-            var targetGetter = targetProperty?.GetGetMethod(true);
+            {
+                var targetProperty = typeof(RegionState.RippleSpawnEggState).GetProperty("WarpEggThreshold", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
-            var hookMethod = NewPerks.RegionState_RippleSpawnEggState_WarpEggThreshold;
+                var targetGetter = targetProperty?.GetGetMethod(true);
 
-            new MonoMod.RuntimeDetour.Hook(targetGetter, hookMethod);
+                var hookMethod = NewPerks.RegionState_RippleSpawnEggState_WarpEggThreshold;
+
+                new MonoMod.RuntimeDetour.Hook(targetGetter, hookMethod);
+            }
         }
 
         private static void UnlockDialog_ToggleBurden(On.Menu.UnlockDialog.orig_ToggleBurden orig, UnlockDialog self, string message)

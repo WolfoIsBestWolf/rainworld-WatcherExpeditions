@@ -16,7 +16,7 @@ using Watcher;
 
 namespace WatcherExpeditions
 {
-    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.3")]
+    [BepInPlugin("wolfo.WatcherExpeditions", "WatcherExpeditions", "1.2.4")]
     public class WatcherExpeditions : BaseUnityPlugin
     {
         public static bool initialized = false;
@@ -65,6 +65,7 @@ namespace WatcherExpeditions
             DisableChallenges.Start();
             ChallengeManip.Start();
             AddWatcherToMenu.Start();
+            AddWatcherRegionArt.Start();
             ST_ExpeditionStuff.Start();
 
             //ArenaStuff.Start();

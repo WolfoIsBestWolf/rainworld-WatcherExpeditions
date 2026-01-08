@@ -169,35 +169,38 @@ namespace WatcherExpeditions
         }
 
        
+        private static ChallengeTools.ExpeditionCreature MakeCrit(CreatureTemplate.Type critType, int spawns)
+        {
+            return new ChallengeTools.ExpeditionCreature
+            {
+                creature = critType,
+                points = ChallengeTools.creatureScores.TryGetValue(critType.value, out int num2) ? num2 : 0,
+                spawns = spawns
+            };
+        }
 
         private static void AddAdditional(On.Expedition.ChallengeTools.orig_AppendAdditionalCreatureSpawns orig)
         {
             orig();
-            int num2;
-            ChallengeTools.ExpeditionCreature item2 = new ChallengeTools.ExpeditionCreature
+
+            if (!ChallengeTools.creatureSpawns.TryGetValue(WatcherEnums.SlugcatStatsName.Watcher.value, out var list)) return;
+
+            list.AddRange(new[]
             {
-                creature = WatcherEnums.CreatureTemplateType.FireSprite,
-                points = (ChallengeTools.creatureScores.TryGetValue(WatcherEnums.CreatureTemplateType.FireSprite.value, out num2) ? num2 : 0),
-                spawns = 12
-            };
-            ChallengeTools.ExpeditionCreature item = new ChallengeTools.ExpeditionCreature
-            {
-                creature = DLCSharedEnums.CreatureTemplateType.BigJelly,
-                points = (ChallengeTools.creatureScores.TryGetValue(DLCSharedEnums.CreatureTemplateType.BigJelly.value, out num2) ? num2 : 0),
-                spawns = 1
-            };
-            ChallengeTools.ExpeditionCreature item3 = new ChallengeTools.ExpeditionCreature
-            {
-                creature = WatcherEnums.CreatureTemplateType.Rattler,
-                points = (ChallengeTools.creatureScores.TryGetValue(WatcherEnums.CreatureTemplateType.Rattler.value, out num2) ? num2 : 0),
-                spawns = 8
-            };
-            if (ChallengeTools.creatureSpawns.ContainsKey(WatcherEnums.SlugcatStatsName.Watcher.value))
-            {
-                ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item2);
-                ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item3);
-                ChallengeTools.creatureSpawns[WatcherEnums.SlugcatStatsName.Watcher.value].Add(item);
-            }
+                MakeCrit(DLCSharedEnums.CreatureTemplateType.BigJelly, 1),
+                MakeCrit(WatcherEnums.CreatureTemplateType.FireSprite, 12),
+                MakeCrit(WatcherEnums.CreatureTemplateType.Rattler, 8),
+                MakeCrit(DLCSharedEnums.CreatureTemplateType.ZoopLizard, 18),
+                MakeCrit(DLCSharedEnums.CreatureTemplateType.EelLizard, 8),
+                MakeCrit(DLCSharedEnums.CreatureTemplateType.SpitLizard, 3),
+                MakeCrit(WatcherEnums.CreatureTemplateType.SmallMoth, 12),
+                MakeCrit(WatcherEnums.CreatureTemplateType.Rat, 12),
+                MakeCrit(WatcherEnums.CreatureTemplateType.BoxWorm, 16),
+                MakeCrit(WatcherEnums.CreatureTemplateType.SandGrub, 16),
+                MakeCrit(WatcherEnums.CreatureTemplateType.BigSandGrub, 16),
+                MakeCrit(WatcherEnums.CreatureTemplateType.DrillCrab, 16),
+                MakeCrit(WatcherEnums.CreatureTemplateType.TowerCrab, 16),
+            });
         }
 
         private static void AddRotRegionsForCreatureSpawns(MonoMod.Cil.ILContext il)
