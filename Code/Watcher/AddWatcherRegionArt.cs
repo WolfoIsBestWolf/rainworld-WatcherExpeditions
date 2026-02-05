@@ -62,6 +62,9 @@ namespace WatcherExpeditions
         {
             orig.Invoke(self);
 
+            if (self.sceneID == null)
+                return;
+
             if (sceneToRegion == null)
                 BuildSceneRegionMap();
 
@@ -100,7 +103,7 @@ namespace WatcherExpeditions
                 if (field.FieldType == typeof(Menu.MenuScene.SceneID) &&
                     field.Name.StartsWith("Landscape_"))
                 {
-                    var value = field.GetValue(null) as Menu.MenuScene.SceneID;
+                    var value = (Menu.MenuScene.SceneID)field.GetValue(null);
                     if (value != null)
                     {
                         string region = field.Name.Substring("Landscape_".Length);

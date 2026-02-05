@@ -68,7 +68,7 @@ namespace WatcherExpeditions
                 "WPTA",
                 "WARC",
                 "WARB",
-                "WVWB",               
+                "WVWB",
                 //"WARD", //Removed 1.5
                 //"WSKD", //Removed 1.5
             };
