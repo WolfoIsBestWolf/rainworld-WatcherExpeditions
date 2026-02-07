@@ -1,7 +1,7 @@
 {
 	"id": "WatcherExpeditions",
 	"name": "Watcher Expeditions",
-	"version": "1.2.1",
+	"version": "1.2.5",
 	"authors": "Wolfo - Original Coder<LINE>shrubfromtomorrow - Maintainer<LINE>Community - Vista Points",
 	"description": "Adds Watcher to the Expedition game mode alongside \nsome Perks, a Mission and a new challenge type exclusive to him.",
 	"requirements": ["expedition", "watcher"],

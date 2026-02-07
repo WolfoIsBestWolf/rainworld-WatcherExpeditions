@@ -58,9 +58,12 @@ namespace WatcherExpeditions
             }
         }
 
-        public static void MenuScene_BuildScene(On.Menu.MenuScene.orig_BuildScene orig, Menu.MenuScene self)
+        private static void MenuScene_BuildScene(On.Menu.MenuScene.orig_BuildScene orig, Menu.MenuScene self)
         {
             orig.Invoke(self);
+
+            if (self.sceneID == null)
+                return;
 
             if (sceneToRegion == null)
                 BuildSceneRegionMap();
@@ -81,11 +84,16 @@ namespace WatcherExpeditions
             self.AddIllustration(
                 new MenuIllustration(self.menu, self, "", shadowName, new Vector2(0.01f, 0.01f), true, false));
 
-            self.AddIllustration(
-                new MenuIllustration(self.menu, self, "", titleName, new Vector2(0.01f, 0.01f), true, false));
+            if (self.menu.ID == ProcessManager.ProcessID.FastTravelScreen || self.menu.ID == ProcessManager.ProcessID.RegionsOverviewScreen)
+            {
+                self.AddIllustration(
+                    new MenuIllustration(self.menu, self, "", shadowName, new Vector2(0.01f, 0.01f), true, false));
 
-            self.flatIllustrations[self.flatIllustrations.Count - 1].sprite.shader =
-                self.menu.manager.rainWorld.Shaders["MenuText"];
+                self.AddIllustration(
+                    new MenuIllustration(self.menu, self, "", titleName, new Vector2(0.01f, 0.01f), true, false));
+
+                self.flatIllustrations[self.flatIllustrations.Count - 1].sprite.shader = self.menu.manager.rainWorld.Shaders["MenuText"];
+            }
         }
 
         private static void BuildSceneRegionMap()
@@ -100,7 +108,7 @@ namespace WatcherExpeditions
                 if (field.FieldType == typeof(Menu.MenuScene.SceneID) &&
                     field.Name.StartsWith("Landscape_"))
                 {
-                    var value = field.GetValue(null) as Menu.MenuScene.SceneID;
+                    var value = (Menu.MenuScene.SceneID)field.GetValue(null);
                     if (value != null)
                     {
                         string region = field.Name.Substring("Landscape_".Length);

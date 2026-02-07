@@ -117,11 +117,11 @@ namespace WatcherExpeditions
             {
                 if (ExpeditionGame.activeUnlocks.Contains("unl-watcher-permwarp"))
                 {
-                    (po.data as WarpPoint.WarpPointData).cycleExpiry = 0;
+                    // can't use 0 as that makes it a nondynamicwarppoint and it then returns null in tryspawnwarppoint which fails the warp, hopefully this will suffice
+                    (po.data as WarpPoint.WarpPointData).cycleExpiry = 999;
                 }             
             }
             return orig(self, po, saveInRegionState);
-
         }
 
         private static SaveState PlayerProgression_GetOrInitiateSaveState(On.PlayerProgression.orig_GetOrInitiateSaveState orig, PlayerProgression self, SlugcatStats.Name saveStateNumber, RainWorldGame game, ProcessManager.MenuSetup setup, bool saveAsDeathOrQuit)

@@ -31,7 +31,7 @@ namespace WatcherExpeditions
             if (temp.key == "WEM_rot")
             {
                 var a = new ST_EchoChallenge();
-                a.FromString("WARD><0><0><0");
+                a.FromString("WARF><0><0><0");
                 temp.challenges.Add(a);
 
                 /*var b= new InfestRegion_Challenge();

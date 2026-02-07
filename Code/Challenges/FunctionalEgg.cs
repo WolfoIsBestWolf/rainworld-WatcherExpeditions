@@ -14,7 +14,7 @@ namespace WatcherExpeditions
         {
             On.Expedition.ExpeditionCoreFile.FromString += ExpeditionCoreFile_FromString;
             On.Menu.StatsDialog.ResetAll_OnPressDone += StatsDialog_ResetAll_OnPressDone;
-            ExpeditionGame.ePos.Add("V0FSQV9QMTc=", new Vector2(90f, 629f));
+            if (!ExpeditionGame.ePos.ContainsKey("V0FSQV9QMTc=")) ExpeditionGame.ePos.Add("V0FSQV9QMTc=", new Vector2(90f, 629f));
             /*Debug.Log("Egg Spots :"+ExpeditionGame.ePos.Count);
             for (int i = 0; i < ExpeditionGame.ePos.Count; i++)
             {
